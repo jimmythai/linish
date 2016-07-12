@@ -1,0 +1,8 @@
+# Ignore bundler config
+/.bundlevendor/bundle
+
+# Ignore bundler gems
+/log/*.log
+
+# Ignore all logfiles and tempfiles
+/tmp
