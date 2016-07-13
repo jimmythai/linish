@@ -5,17 +5,17 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/rails_app/.bundle
+/linish_rails/.bundle
 
 # Ignore the default SQLite database.
-/rails_app/db/*.sqlite3
-/rails_app/db/*.sqlite3-journal
+/linish_rails/db/*.sqlite3
+/linish_rails/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/rails_app/log/*
-/rails_app/tmp/*
-!/rails_app/log/.keep
-!/rails_app/tmp/.keep
+/linish_rails/log/*
+/linish_rails/tmp/*
+!/linish_rails/log/.keep
+!/linish_rails/tmp/.keep
 
 # Ignore Byebug command history file.
-/rails_app/.byebug_history
+/linish_rails/.byebug_history
