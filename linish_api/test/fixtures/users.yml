@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  email: MyString
+  avatar_image: 
+  version_number: 1
+  device_token: 1
+
+two:
+  id: MyString
+  email: MyString
+  avatar_image: 
+  version_number: 1
+  device_token: 1
