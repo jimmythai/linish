@@ -13137,3 +13137,11 @@ Started POST "/api/v1/rooms/3/messages/delete" for ::1 at 2016-07-15 14:47:04 +0
 Started POST "/api/v1/rooms/3/messages/delete" for ::1 at 2016-07-15 14:48:47 +0900
   [1m[36mMessage Load (0.4ms)[0m  [1m[34mSELECT `messages`.* FROM `messages` WHERE `messages`.`message_id` = 2 AND `messages`.`room_id` = 3[0m
   [1m[35mSQL (2.0ms)[0m  [1m[31mDELETE FROM `messages` WHERE `messages`.`message_id` = 2[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 15:37:12 +0900
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 15:37:47 +0900
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 15:37:55 +0900
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 16:44:37 +0900
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 16:44:44 +0900
+Started POST "/api/v1/accounts" for ::1 at 2016-07-15 16:44:51 +0900
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 16:44:55 +0900
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m

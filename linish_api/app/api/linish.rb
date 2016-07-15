@@ -66,8 +66,6 @@ module Linish
             rooms.push({room_id: roomId, updated_at: updatedAt, user_ids: users})
           end
           rooms.sort_by { |room| room[:updated_at] }
-          # sortedRooms = rooms.sort_by { |room| room[:updated_at] }
-          # return sortedRoom
         end
       end
 
