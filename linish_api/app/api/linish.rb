@@ -1,8 +1,41 @@
 module Linish
+  # use grape module
+  module ErrorFormatter
+    def self.call message, backtrace, options, env
+      if message.is_a?(Hash)
+        { error: message[:message], code: message[:code] }.to_json
+      else
+        { error:message }.to_json
+      end
+    end
+  end
+
+  # write some error messages here
+  ERROR_MESSAGES = {
+    
+  }
+
   class API < Grape::API
     version 'v1', using: :path
     format :json
     prefix :api
+    error_formatter :json, ErrorFormatter
+    use Rack::Session::Cookie, secret: 'change_me'
+
+    # write some helpers here
+    helpers do
+      def throw_error!(message, error_code, status)
+        error!({ message: message, code: error_code }, status)
+      end
+
+      def is_login
+        return !env['rack.session'][:user_id].nil?
+      end
+
+      def login(user)
+        env['rack.session'][:user_id] = user.user_id
+      end
+    end
 
     resource :accounts do
       desc 'Return users.'
@@ -24,7 +57,15 @@ module Linish
         requires :password, type: String, desc: 'user password'
       end
       post :signin do
-        # TODO return something
+        user = User.find_by(user_id: params[:user_id])
+        isAuthenticated = user && !user.nil? && user.authenticate(params[:password])
+        if isAuthenticated
+          login(user)
+          user
+        else
+          # TODO fix this
+          throw_error!("UNAUTHENTICATED", 123, 401)
+        end
       end
 
       desc 'Create an account.'

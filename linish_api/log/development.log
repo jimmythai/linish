@@ -13145,3 +13145,630 @@ Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 16:44:44 +0900
 Started POST "/api/v1/accounts" for ::1 at 2016-07-15 16:44:51 +0900
 Started GET "/api/v1/accounts" for ::1 at 2016-07-15 16:44:55 +0900
   [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts/signin" for ::1 at 2016-07-15 16:56:47 +0900
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'signin' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 16:56:53 +0900
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:08:18 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  
+NameError (undefined local variable or method `session' for #<#<Class:0x007fa13d2e85c0>:0x007fa13e2096f8>):
+  
+app/api/linish.rb:29:in `block (2 levels) in <class:API>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:15:36 +0900
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:15:41 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:15:50 +0900
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:16:09 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:16:22 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:16:27 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:16:39 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:17:09 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:17:17 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1136' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:17:27 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:17:59 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:22 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:36 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:37 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:39 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:40 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:41 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:41 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1139' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:18:51 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+  
+NoMethodError (undefined method `nil!' for #<User:0x007fa13c936860>
+Did you mean?  nil?):
+  
+app/api/linish.rb:30:in `block (2 levels) in <class:API>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:19:08 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:19:10 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:20:22 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:20:24 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:20:27 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:20:42 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:20:49 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam11233' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:38:14 +0900
+  
+SyntaxError (/Users/atsushiyamamoto/Git/linish/linish_api/app/api/linish.rb:59: syntax error, unexpected ')', expecting =>
+/Users/atsushiyamamoto/Git/linish/linish_api/app/api/linish.rb:170: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/api/linish.rb:59: syntax error, unexpected ')', expecting =>
+app/api/linish.rb:170: syntax error, unexpected end-of-input, expecting keyword_end
+config/routes.rb:2:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:38:21 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:38:52 +0900
+  
+NoMethodError (undefined method `helpers' for Linish:Module):
+  
+app/api/linish.rb:14:in `<module:Linish>'
+app/api/linish.rb:1:in `<top (required)>'
+config/routes.rb:2:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:39:41 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:39:46 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam11210' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:39:59 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam11210' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:00 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam11210' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:01 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam11210' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:01 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam11210' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:01 +0900
+  
+SyntaxError (/Users/atsushiyamamoto/Git/linish/linish_api/app/api/linish.rb:60: syntax error, unexpected ')', expecting =>
+/Users/atsushiyamamoto/Git/linish/linish_api/app/api/linish.rb:171: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/api/linish.rb:60: syntax error, unexpected ')', expecting =>
+app/api/linish.rb:171: syntax error, unexpected end-of-input, expecting keyword_end
+config/routes.rb:2:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:01 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:03 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:03 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:04 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:04 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:04 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:11 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:29 +0900
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/accounts/signin"):
+  
+actionpack (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:40:47 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1129' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:41:08 +0900
+  
+SyntaxError (/Users/atsushiyamamoto/Git/linish/linish_api/app/api/linish.rb:59: syntax error, unexpected ')', expecting =>
+/Users/atsushiyamamoto/Git/linish/linish_api/app/api/linish.rb:170: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/api/linish.rb:59: syntax error, unexpected ')', expecting =>
+app/api/linish.rb:170: syntax error, unexpected end-of-input, expecting keyword_end
+config/routes.rb:2:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:41:43 +0900
+  
+NoMethodError (undefined method `helpers' for Linish:Module):
+  
+app/api/linish.rb:14:in `<module:Linish>'
+app/api/linish.rb:1:in `<top (required)>'
+config/routes.rb:2:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:42:46 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1129' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:42:52 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:21 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:22 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:22 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:22 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:23 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:23 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:24 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:24 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:24 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 17:43:24 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:46:32 +0900
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1121' LIMIT 1[0m
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:32:in `session'
+app/api/linish.rb:57:in `block (2 levels) in <class:API>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:46:37 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:32:in `session'
+app/api/linish.rb:57:in `block (2 levels) in <class:API>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:50:09 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:32:in `session'
+app/api/linish.rb:57:in `block (2 levels) in <class:API>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:50:25 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:32:in `session'
+app/api/linish.rb:57:in `block (2 levels) in <class:API>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:50:26 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:32:in `session'
+app/api/linish.rb:57:in `block (2 levels) in <class:API>'
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:50:30 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:58:22 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 18:59:23 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts" for ::1 at 2016-07-15 18:59:26 +0900
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 18:59:39 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:03:27 +0900
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:03:41 +0900
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:33:in `session'
+app/api/linish.rb:40:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:05:01 +0900
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:41:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:05:30 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:05:44 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:05:53 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:05:55 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:06:43 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:06:50 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:07:00 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:07:45 +0900
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:07:53 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:07:59 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:07:59 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:09:18 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:09:32 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:09:40 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:12:44 +0900
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:41:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:12:52 +0900
+  
+NameError (uninitialized constant Rack::Session::Abstract::ENV_SESSION_KEY):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:41:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:13:00 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:13:09 +0900
+  
+NoMethodError (undefined method `new' for Rack::Session::Abstract:Module):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:41:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:13:57 +0900
+  
+NoMethodError (undefined method `new' for Rack:Module):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:41:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:14:04 +0900
+  
+NoMethodError (undefined method `new' for Rack:Module):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:41:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:14:18 +0900
+  
+NoMethodError (undefined method `new' for Rack::Session:Module):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:41:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:14:27 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:14:32 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:14:39 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:17:08 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:17:15 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:17:22 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:17:31 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:21:09 +0900
+  
+NoMethodError (undefined method `use' for #<#<Class:0x007fa13e1ab9e0>:0x007fa13c36ac38>
+Did you mean?  unset):
+  
+app/api/linish.rb:34:in `session'
+app/api/linish.rb:43:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:25:18 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:54:52 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:55:39 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:55:44 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:02 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:05 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:06 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:06 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:07 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:07 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:07 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:08 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:08 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:08 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:08 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:08 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:08 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:09 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:09 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:09 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:09 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:09 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:10 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:10 +0900
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:10 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:14 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:15 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:15 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:24 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:33 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:34 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:56:35 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:57:49 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:58:26 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:58:27 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:58:46 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:59:08 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:59:21 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  
+NameError (undefined local variable or method `check_session' for #<#<Class:0x007fa1405c1cd0>:0x007fa140581810>
+Did you mean?  check_session!):
+  
+app/api/linish.rb:50:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:59:33 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 19:59:49 +0900
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 20:00:10 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 20:00:16 +0900
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 20:00:42 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1127' LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 20:00:49 +0900
+  
+NameError (undefined local variable or method `check_session' for #<#<Class:0x007fa13d1999f8>:0x007fa1408f00f0>):
+  
+app/api/linish.rb:50:in `block (2 levels) in <class:API>'
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 20:00:58 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 20:11:15 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts" for ::1 at 2016-07-15 20:16:02 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` LIMIT 20[0m
+Started GET "/api/v1/accounts/signin" for ::1 at 2016-07-15 20:16:12 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'signin' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 20:16:17 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 20:16:46 +0900
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 20:17:26 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
+Started POST "/api/v1/accounts/signin" for ::1 at 2016-07-15 20:17:43 +0900
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`user_id` = 'ayamam1128' LIMIT 1[0m
