@@ -10,11 +10,6 @@ module Linish
     end
   end
 
-  # write some error messages here
-  ERROR_MESSAGES = {
-    
-  }
-
   class API < Grape::API
     version 'v1', using: :path
     format :json
@@ -28,18 +23,23 @@ module Linish
         error!({ message: message, code: error_code }, status)
       end
 
-      def is_login
-        return !env['rack.session'][:user_id].nil?
+      def check_session
+        return throw_error!('Bad request', 400, 400) if env['rack.session'][:user_id].nil?
       end
 
-      def login(user)
-        env['rack.session'][:user_id] = user.user_id
+      def login(user_id)
+        env['rack.session'][:user_id] = user_id
+      end
+
+      def logout
+        env['rack.session'][:user_id].clear
       end
     end
 
     resource :accounts do
       desc 'Return users.'
       get do
+        check_session
         User.all.limit(20)
       end
 
@@ -47,6 +47,7 @@ module Linish
       route_param :user_id do
         desc 'Return a specific user.'
         get do
+          check_session
           User.find_by(user_id: params[:user_id])
         end
       end
@@ -58,14 +59,28 @@ module Linish
       end
       post :signin do
         user = User.find_by(user_id: params[:user_id])
-        isAuthenticated = user && !user.nil? && user.authenticate(params[:password])
-        if isAuthenticated
-          login(user)
-          user
-        else
-          # TODO fix this
-          throw_error!("UNAUTHENTICATED", 123, 401)
+        doesUserExist = !user.nil?
+        isAuthenticated = doesUserExist && user.authenticate(params[:password])
+        error = {}
+        unless doesUserExist
+          error[:user_id] = ["isn't correct"]
+          throw_error!(error, 400, 400)
         end
+
+        if isAuthenticated
+          login(user.user_id)
+          return user
+        else
+          error[:password] = ["isn't correct"]
+          throw_error!(error, 400, 400)
+        end
+      end
+
+      desc 'Signout an account.'
+      params do
+      end
+      post :signout do
+        logout
       end
 
       desc 'Create an account.'
@@ -75,17 +90,24 @@ module Linish
         requires :password, type: String, desc: 'user password'
       end
       post :signup do
-        User.create(user_id: params[:user_id], email: params[:email], password: params[:password], device_token: params[:device_token])
-        # TODO return something
+        user = User.new(user_id: params[:user_id], email: params[:email], password: params[:password], device_token: params[:device_token])
+        if user.valid?
+          user.save
+          login(user.user_id)
+        else
+          throw_error!(user.errors, 400, 400)
+        end
       end
 
       desc 'Delete an account.'
       params do
-        requires :user_id, type: String, desc: 'user id'
-        requires :password, type: String, desc: 'user password'
+        # requires :user_id, type: String, desc: 'user id'
+        # requires :password, type: String, desc: 'user password'
       end
       post :delete do
-        User.find_by(user_id: params[:user_id]).delete
+        check_session
+        # User.find_by(user_id: params[:user_id]).delete
+        User.find_by(user_id: env['rack.session'][:user_id]).destroy
         # TODO return something
       end
     end
@@ -93,7 +115,8 @@ module Linish
     resource :rooms do
       desc 'Return rooms.'
       get do
-        userId = params[:user_id]
+        check_session
+        userId = params[:user_id] || env['rack.session'][:user_id]
         if userId.nil?
           UserRoom.all.limit(20)
         else
@@ -115,6 +138,7 @@ module Linish
         requires :user_ids, type: Array, desc: 'user ids'
       end
       post :create do
+        check_session
         room = Room.create
         params[:user_ids].each do |userId|
           user = User.find_by(user_id: userId)
@@ -125,20 +149,27 @@ module Linish
 
       desc 'delete a room.'
       params do
-        requires :user_id, type: String, desc: 'user id'
+        # requires :user_id, type: String, desc: 'user id'
         requires :room_ids, type: Array, desc: 'room ids'
       end
       post :delete do
-        userId = params[:user_id]
+        check_session
+        userId = params[:user_id] || env['rack.session'][:user_id]
         params[:room_ids].each do |roomId|
           userRoomsByUserId = UserRoom.where(user_id: userId, room_id: roomId)
-          userRoomsByUserId.each do |userRoomByUserId|
-            userRoomByUserId.delete
+          unless userRoomsByUserId.length == 0
+            userRoomsByUserId.each do |userRoomByUserId|
+              userRoomByUserId.delete
+            end
+
+            userRooms = UserRoom.where(room_id: roomId)
+            if userRooms.length == 0
+              Room.find_by(room_id: roomId).delete
+            end
+          else
+            return throw_error!("can't find rooms'", 400, 400)
           end
-          userRooms = UserRoom.where(room_id: roomId)
-          if userRooms.length === 0
-            Room.find_by(room_id: roomId).delete
-          end
+
         end
         # TODO return something
       end
@@ -146,6 +177,7 @@ module Linish
       # TODO use resource to declare directory
       desc 'Return messages per room'
       get '/:room_id/messages' do
+        check_session
         roomId = params[:room_id]
         # TODO refactor!! remove room_id
         messages = Message.where(room_id: roomId)
@@ -157,6 +189,7 @@ module Linish
         requires :message, type: String, desc: 'message'
       end
       post '/:room_id/messages/add' do
+        check_session
         message = Message.create(message: params[:message], user_id: params[:user_id], room_id: params[:room_id])
       end
 
@@ -165,6 +198,7 @@ module Linish
         requires :message_ids, type: Array, desc: 'message ids'
       end
       post '/:room_id/messages/delete' do
+        check_session
         roomId = params[:room_id]
         params[:message_ids].each do |messageId|
           messages = Message.where(message_id: messageId, room_id: roomId)

@@ -1,0 +1,96 @@
+//
+//  SigninViewController.swift
+//  linish_ios
+//
+//  Created by Atsushi Yamamoto on 7/16/16.
+//  Copyright © 2016 Atsushi Yamamoto. All rights reserved.
+//
+
+import UIKit
+import Alamofire
+import SwiftyJSON
+
+
+class SigninViewController: UIViewController {
+
+    @IBOutlet weak var useridField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func signInAction(sender: AnyObject) {
+        let userid = self.useridField.text // length and valid string
+        let password = self.passwordField.text // valid length and valid string
+        
+        var errors: [String] = []
+
+        if userid!.isEmpty {
+            errors.append("ユーザーIDを入力してください")
+        } else if userid!.characters.count >= 25 {
+            errors.append("ユーザーIDは25文字以内で入力してください")
+        }
+        
+        if password!.isEmpty {
+            errors.append("パスワードを入力してください")
+        } else if password!.characters.count < 8 || password!.characters.count >= 100 {
+            errors.append("パスワードは8文字以上100文字以内で入力してください")
+        }
+        
+        if !errors.isEmpty {
+            let error = errors.joinWithSeparator("\n")
+            let alert = UIAlertController(title: "Login Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let parameters = ["user_id": userid!, "password": password!]
+            Alamofire.request(.POST, "http://localhost:3000/api/v1/accounts/signin", parameters: parameters)
+                .responseJSON { response in
+                    let json = JSON(response.result.value!)
+                    if json["code"] == 400 {
+                        // TODO refactor!! Make alert utility
+                        let alert = UIAlertController(title: "Login Failure", message: "ユーザーIDまたはパスワードが違います", preferredStyle: UIAlertControllerStyle.Alert)
+                        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                            (action: UIAlertAction!) -> Void in
+                            print("OK")
+                        })
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    } else {
+                        // ref1: http://stackoverflow.com/questions/25326647/present-view-controller-in-storyboard-with-a-navigation-controller-swift
+                        // ref2: http://stackoverflow.com/questions/32224416/swift-how-to-show-a-tab-bar-controller-after-a-login-view
+                        
+                        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+                        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MainTabBarViewController") as UIViewController
+                        appDelegate.window?.rootViewController = initialViewController
+                        appDelegate.window?.makeKeyAndVisible()
+                    }
+                }
+        }
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
