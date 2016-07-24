@@ -3,6 +3,12 @@ class User < ApplicationRecord
   has_many :user_rooms, class_name: "UserRoom", dependent: :destroy
   # has_many :user_rooms, class_name: "UserRoom"
   has_many :rooms, through: :user_rooms
+  has_many :relationships, class_name: "Relationship", dependent: :destroy
+
+  # has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  # has_many :following, through: :active_relationships, source: :followed
+  # has_many :followers, through: :passive_relationships, source: :follower
 
   before_save { user_id.downcase }
   validates :user_id, presence: true, length: { maximum: 25 }, uniqueness: true

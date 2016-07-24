@@ -12,45 +12,27 @@ import SwiftyJSON
 
 class ChatsTableViewController: UITableViewController {
     var rooms = [[String: String?]]()
+    var selectedRoom: Int = 0
+    var selectedMembers: String = ""
+    var userId: String = ""
 
     @IBOutlet weak var chatListTableView: UITableView!
+    
+    @IBAction func unwindToChats(segue: UIStoryboardSegue) {
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        chatListTableView.dataSource = self
+
+        self.chatListTableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
+        self.chatListTableView.dataSource = self
         
         // TODO add message and image in this API
-        Alamofire.request(.GET, "http://localhost:3000/api/v1/rooms")
-            .responseJSON { response in
-                guard let object = response.result.value else {
-                    return
-                }
-
-                let json = JSON(object)
-                
-                json.forEach {(_, json) in
-                    var roomMembers: [String] = []
-                    if let roomMembersJSON = json["user_ids"].array {
-                        for roomMemberJSON in roomMembersJSON {
-                            roomMembers.append(roomMemberJSON.string!)
-                        }
-                    }
-                    let roomMembersString = roomMembers.joinWithSeparator(", ")
-
-                    let updatedAt: String = json["updated_at"].string!.stringByReplacingOccurrencesOfString("T", withString: " ")
-                    let substringedUpdatedAt = updatedAt.substringToIndex(updatedAt.endIndex.advancedBy(-5))
-                    let dateFormat = "yy/M/dd H:mm:ss"
-                    let date = Date.dateFromString(substringedUpdatedAt, format: dateFormat, locale: "en_US_POSIX")
-                    let dateString = Date.stringFromDate(date, format: dateFormat, locale: "en_US_POSIX")
-                    let room: [String: String?] = [
-                        "roomId": String(json["room_id"]),
-                        "date": dateString,
-                        "roomMembers": roomMembersString
-                    ]
-                    self.rooms.append(room)
-                }
-                self.chatListTableView.reloadData()
+        API.get("/rooms") { response in
+            self.showRooms(response)
         }
+        getUserId()
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -72,23 +54,71 @@ class ChatsTableViewController: UITableViewController {
             "room_ids": [Int(row["roomId"]!!)!]
         ]
 
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/rooms/delete", parameters: parameters)
-            .responseJSON { response in
-                let json = JSON(response.result.value!)
-                if json["code"] == 400 {
-                    return
-                } else {
-                    print("hoge")
-                    print(parameters)
-                    self.rooms.removeAtIndex(rowNumber)
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                }
+        API.post("/rooms/delete", parameters: parameters) { response in
+            if response["code"] == 400 {
+                return
+            } else {
+                self.rooms.removeAtIndex(rowNumber)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let row = self.rooms[indexPath.row]
+        self.selectedRoom = Int(row["roomId"]!!)!
+        self.selectedMembers = row["roomMembers"]!!
+        self.performSegueWithIdentifier("showMessagesFromChats", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showMessagesFromChats" {
+            let nextVC:MessagesViewController = segue.destinationViewController as! MessagesViewController
+            nextVC.selectedRoom = self.selectedRoom
+            nextVC.title = self.selectedMembers
+            nextVC.userId = self.userId
+        }
+    }
+    
+    func showRooms(response: JSON) {
+        response.forEach {(_, response) in
+            var roomMembers: [String] = []
+            if let roomMembersJSON = response["user_ids"].array {
+                for roomMemberJSON in roomMembersJSON {
+                    roomMembers.append(roomMemberJSON.string!)
+                }
+            }
+            var roomMembersString:String = "Empty room"
+            if (!roomMembers.isEmpty) {
+                roomMembersString = roomMembers.joinWithSeparator(", ")
+            }
+            
+            let updatedAt: String = response["updated_at"].string!.stringByReplacingOccurrencesOfString("T", withString: " ")
+            let substringedUpdatedAt = updatedAt.substringToIndex(updatedAt.endIndex.advancedBy(-5))
+            let dateFormat = "yy/M/dd H:mm:ss"
+            let date = Date.dateFromString(substringedUpdatedAt, format: dateFormat, locale: "en_US_POSIX")
+            let dateString = Date.stringFromDate(date, format: dateFormat, locale: "en_US_POSIX")
+
+            let room: [String: String?] = [
+                "roomId": String(response["room_id"]),
+                "date": dateString,
+                "roomMembers": roomMembersString
+            ]
+            self.rooms.append(room)
+        }
+        self.chatListTableView.reloadData()
+    }
+
+    func getUserId() {
+        API.get("/accounts?uuid=\(UIDevice.currentDevice().identifierForVendor!.UUIDString)") { response in
+            let userId = response["user_id"].string!
+            self.userId = userId
+        }
     }
 
     // MARK: - Table view data source

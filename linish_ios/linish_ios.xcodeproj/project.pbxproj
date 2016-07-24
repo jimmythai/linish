@@ -13,6 +13,10 @@
 		0F0CDAF51D3FC9590091F96E /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0CDAF41D3FC9590091F96E /* DeleteAccountViewController.swift */; };
 		0F0CDAF71D4046F10091F96E /* DeleteAccountCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0CDAF61D4046F10091F96E /* DeleteAccountCompletionViewController.swift */; };
 		0F0CDAF91D4062050091F96E /* SignoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0CDAF81D4062050091F96E /* SignoutViewController.swift */; };
+		0F0CDAFB1D40B2670091F96E /* ChooseFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0CDAFA1D40B2670091F96E /* ChooseFriendsViewController.swift */; };
+		0F0CDAFD1D40B3E50091F96E /* ChooseFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0CDAFC1D40B3E50091F96E /* ChooseFriendsTableViewCell.swift */; };
+		0F0CDAFF1D40CD290091F96E /* images in Resources */ = {isa = PBXBuildFile; fileRef = 0F0CDAFE1D40CD290091F96E /* images */; };
+		0F0CDB011D41D1130091F96E /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0CDB001D41D1130091F96E /* AddFriendViewController.swift */; };
 		0F327FE11D3D8B0500A413A6 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F327FE01D3D8B0500A413A6 /* SignupViewController.swift */; };
 		0F327FE51D3DA82A00A413A6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F327FE41D3DA82A00A413A6 /* Utility.swift */; };
 		0FDDBB161D3E04230022C3C2 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDDBB151D3E04230022C3C2 /* SwiftyJSON.framework */; };
@@ -63,6 +67,10 @@
 		0F0CDAF41D3FC9590091F96E /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
 		0F0CDAF61D4046F10091F96E /* DeleteAccountCompletionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountCompletionViewController.swift; sourceTree = "<group>"; };
 		0F0CDAF81D4062050091F96E /* SignoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignoutViewController.swift; sourceTree = "<group>"; };
+		0F0CDAFA1D40B2670091F96E /* ChooseFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFriendsViewController.swift; sourceTree = "<group>"; };
+		0F0CDAFC1D40B3E50091F96E /* ChooseFriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		0F0CDAFE1D40CD290091F96E /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		0F0CDB001D41D1130091F96E /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		0F327FE01D3D8B0500A413A6 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		0F327FE41D3DA82A00A413A6 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		0FDDBB151D3E04230022C3C2 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/linish_ios-erjquonoajjevzbcpfqqsxeuaohg/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -160,16 +168,20 @@
 				0F0CDAF81D4062050091F96E /* SignoutViewController.swift */,
 				0F0CDAF41D3FC9590091F96E /* DeleteAccountViewController.swift */,
 				0FFED6721D3E0E9D00FF403A /* MainTabBarViewController.swift */,
-				0FFED67E1D3E4B1300FF403A /* FriendListTableViewCell.swift */,
 				0FFED67A1D3E343B00FF403A /* OthersViewController.swift */,
 				0FFED6801D3E546300FF403A /* ChatListTableViewCell.swift */,
-				0F0CDAF01D3FA6470091F96E /* SettingViewController.swift */,
-				0F0CDAF21D3FA6A00091F96E /* SettingTableViewCell.swift */,
-				0FEDB55C1D3929E50094C9E8 /* Main.storyboard */,
-				0F0CDAF61D4046F10091F96E /* DeleteAccountCompletionViewController.swift */,
 				0FFED67C1D3E345E00FF403A /* ChatsTableViewController.swift */,
+				0F0CDAF01D3FA6470091F96E /* SettingViewController.swift */,
+				0F0CDB001D41D1130091F96E /* AddFriendViewController.swift */,
+				0F0CDAF21D3FA6A00091F96E /* SettingTableViewCell.swift */,
+				0F0CDAFC1D40B3E50091F96E /* ChooseFriendsTableViewCell.swift */,
+				0F0CDAFA1D40B2670091F96E /* ChooseFriendsViewController.swift */,
+				0FEDB55C1D3929E50094C9E8 /* Main.storyboard */,
+				0F0CDAFE1D40CD290091F96E /* images */,
+				0F0CDAF61D4046F10091F96E /* DeleteAccountCompletionViewController.swift */,
 				0FFED6741D3E125100FF403A /* FriendsNavigationViewController.swift */,
 				0FFED6701D3E0D3700FF403A /* FriendsTableViewController.swift */,
+				0FFED67E1D3E4B1300FF403A /* FriendListTableViewCell.swift */,
 				0F327FE41D3DA82A00A413A6 /* Utility.swift */,
 				0FEDB5621D3929E50094C9E8 /* Assets.xcassets */,
 				0FEDB5641D3929E50094C9E8 /* LaunchScreen.storyboard */,
@@ -334,6 +346,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F0CDAFF1D40CD290091F96E /* images in Resources */,
 				0FEDB5661D3929E50094C9E8 /* LaunchScreen.storyboard in Resources */,
 				0FEDB5631D3929E50094C9E8 /* Assets.xcassets in Resources */,
 				0FEDB55E1D3929E50094C9E8 /* Main.storyboard in Resources */,
@@ -488,11 +501,14 @@
 				0FEDB55B1D3929E50094C9E8 /* ViewController.swift in Sources */,
 				0FFED6731D3E0E9D00FF403A /* MainTabBarViewController.swift in Sources */,
 				0FEDB5921D3A7A650094C9E8 /* SigninViewController.swift in Sources */,
+				0F0CDAFD1D40B3E50091F96E /* ChooseFriendsTableViewCell.swift in Sources */,
 				0FFED6811D3E546300FF403A /* ChatListTableViewCell.swift in Sources */,
 				0F327FE51D3DA82A00A413A6 /* Utility.swift in Sources */,
 				0F0CDAF11D3FA6470091F96E /* SettingViewController.swift in Sources */,
+				0F0CDB011D41D1130091F96E /* AddFriendViewController.swift in Sources */,
 				0F0CDAF31D3FA6A00091F96E /* SettingTableViewCell.swift in Sources */,
 				0F327FE11D3D8B0500A413A6 /* SignupViewController.swift in Sources */,
+				0F0CDAFB1D40B2670091F96E /* ChooseFriendsViewController.swift in Sources */,
 				0FFED67B1D3E343B00FF403A /* OthersViewController.swift in Sources */,
 				0FFED67D1D3E345E00FF403A /* ChatsTableViewController.swift in Sources */,
 				0F0396EA1D3F6A9B0065DA2E /* MessagesViewController.swift in Sources */,

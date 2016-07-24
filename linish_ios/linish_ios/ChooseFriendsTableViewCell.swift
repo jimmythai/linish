@@ -1,17 +1,17 @@
 //
-//  FriendListTableViewCell.swift
+//  ChooseFriendsTableViewCell.swift
 //  linish_ios
 //
-//  Created by Atsushi Yamamoto on 7/19/16.
+//  Created by Atsushi Yamamoto on 7/21/16.
 //  Copyright © 2016 Atsushi Yamamoto. All rights reserved.
 //
 
 import UIKit
 
-class FriendListTableViewCell: UITableViewCell {
-
+class ChooseFriendsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var friendUsername: UILabel!
+    @IBOutlet weak var tickButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()

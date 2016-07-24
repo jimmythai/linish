@@ -40,7 +40,16 @@ module Linish
       desc 'Return users.'
       get do
         check_session
-        User.all.limit(20)
+        if params[:uuid]
+          user = User.find_by(uuid: params[:uuid])
+          if user.nil?
+            throw_error!("User doesn't exist.", 400, 400) if user.nil?
+          else
+           return user
+          end
+        else
+          User.all.limit(20)
+        end
       end
 
       # route_paramを使うとname spaceのように区切れる
@@ -48,16 +57,32 @@ module Linish
         desc 'Return a specific user.'
         get do
           check_session
-          User.find_by(user_id: params[:user_id])
+          user = User.find_by(user_id: params[:user_id])
+          if user.nil?
+            throw_error!("User doesn't exist.", 400, 400)
+          else
+           return user
+          end
         end
       end
+
+      # route_param :uuid do
+      #   desc 'Return a specific user.'
+      #   get do
+      #     check_session
+      #     user = User.find_by(uuid: params[:uuid])
+      #     throw_error!("User doesn't exist.", 400, 400) if user.nil?
+      #   end
+      # end
 
       desc 'Signin to an account.'
       params do
         requires :user_id, type: String, desc: 'user id'
         requires :password, type: String, desc: 'user password'
+        optional :uuid, type: String, desc: 'uuid'
       end
       post :signin do
+        p params[:password]
         user = User.find_by(user_id: params[:user_id])
         doesUserExist = !user.nil?
         isAuthenticated = doesUserExist && user.authenticate(params[:password])
@@ -68,6 +93,10 @@ module Linish
         end
 
         if isAuthenticated
+          uuid = params[:uuid]
+          unless uuid.nil?
+            user.update_attribute(:uuid, uuid)
+          end
           login(user.user_id)
           return user
         else
@@ -80,6 +109,8 @@ module Linish
       params do
       end
       post :signout do
+        user = User.find_by(user_id: env['rack.session'][:user_id])
+        user.update_attribute(:uuid, nil)
         logout
       end
 
@@ -88,10 +119,15 @@ module Linish
         requires :user_id, type: String, desc: 'user id'
         requires :email, type: String, desc: 'user email'
         requires :password, type: String, desc: 'user password'
+        optional :uuid, type: String, desc: 'uuid'
       end
       post :signup do
         user = User.new(user_id: params[:user_id], email: params[:email], password: params[:password], device_token: params[:device_token])
         if user.valid?
+          uuid = params[:uuid]
+          unless uuid.nil?
+            user.uuid = uuid
+          end
           user.save
           login(user.user_id)
         else
@@ -101,14 +137,77 @@ module Linish
 
       desc 'Delete an account.'
       params do
-        # requires :user_id, type: String, desc: 'user id'
+        optional :user_id, type: String, desc: 'user id'
         # requires :password, type: String, desc: 'user password'
       end
       post :delete do
         check_session
-        # User.find_by(user_id: params[:user_id]).delete
-        User.find_by(user_id: env['rack.session'][:user_id]).destroy
+        userId = params[:user_id] || env['rack.session'][:user_id]
+        User.find_by(user_id: userId).destroy
         # TODO return something
+      end
+    end
+
+    resource :friends do
+      desc 'Get friends.'
+      get do
+        check_session
+        userId = params[:user_id] || env['rack.session'][:user_id]
+        if userId.nil?
+          Relationship.all.limit(20)
+        else
+          followedUsers = []
+          followers = Relationship.where(follower_id: userId)
+          followers.each do |follower|
+            followedUsers.push(follower.followed_id)
+          end
+          followingUsers = []
+          followings = Relationship.where(followed_id: userId)
+          followings.each do |following|
+            followingUsers.push(following.follower_id)
+          end
+          friends = followedUsers.concat(followingUsers)
+          friends.sort
+        end
+      end
+
+      desc 'Add friends.'
+      params do
+        requires :followed_id, type: String, desc: 'followed id'
+        optional :follower_id, type: String, desc: 'follower id'
+      end
+      post :add do
+        check_session
+        followerId = params[:follower_id] || env['rack.session'][:user_id]
+        followedId = params[:followed_id]
+        throw_error!("You can't be a friend with yourself", 400, 400) if followerId == followedId
+        relationship = Relationship.create(follower_id: followerId, followed_id: followedId)
+        errorMessages = relationship.errors.full_messages
+        errorMessages = "Already your friend" if errorMessages.instance_of?(Array) && !errorMessages.empty?
+        throw_error!(errorMessages, 400, 400) unless errorMessages.empty?
+      end
+
+      desc 'Delete friends.'
+      params do
+        optional :user_id, type: String, desc: 'user id'
+        requires :user_ids, type: Array, desc: 'user ids'
+      end
+      post :delete do
+        check_session
+        userIds = params[:user_ids]
+        userId = params[:user_id] || env['rack.session'][:user_id]
+        userIds.push(userId)
+        userIds.each do |userId|
+          user = Relationship.find_by(follower_id: userId)
+          if user.nil?
+            user = Relationship.find_by(followed_id: userId)
+          end
+          if user.nil?
+            throw_error!("can't find friends'", 400, 400)
+          else
+            user.destroy
+          end
+        end
       end
     end
 
@@ -127,29 +226,40 @@ module Linish
             userRoomsByRoom = UserRoom.where(room_id: roomId)
             updatedAt = Room.find_by(room_id: roomId).updated_at
             users = userRoomsByRoom.map { |userRoomByRoom| userRoomByRoom.user_id }
+            users.delete(userId)
             rooms.push({room_id: roomId, updated_at: updatedAt, user_ids: users})
           end
           rooms.sort_by { |room| room[:updated_at] }
         end
       end
 
+      # TODO dont let it make a room which exists if it has only one memberId
       desc 'Create a room.'
       params do
-        requires :user_ids, type: Array, desc: 'user ids'
+        optional :creater_id, type: String, desc: 'user id'
+        requires :member_ids, type: Array, desc: 'user ids'
       end
       post :create do
         check_session
+        createrId = params[:creater_id] || env['rack.session'][:user_id]
+        memberIds = params[:member_ids]
+        throw_error!("can't find user'", 400, 400) if memberIds.empty?
+        memberIds.push(createrId)
         room = Room.create
-        params[:user_ids].each do |userId|
-          user = User.find_by(user_id: userId)
-          user.user_rooms.create(room_id: room.room_id)
-          # TODO return something
+        memberIds.each do |memberId|
+          user = User.find_by(user_id: memberId)
+          if user.nil?
+            room.destroy
+            throw_error!("can't find user'", 400, 400)
+          else
+            user.user_rooms.create(room_id: room.room_id)
+          end
         end
       end
 
       desc 'delete a room.'
       params do
-        # requires :user_id, type: String, desc: 'user id'
+        optional :user_id, type: String, desc: 'user id'
         requires :room_ids, type: Array, desc: 'room ids'
       end
       post :delete do
@@ -181,16 +291,26 @@ module Linish
         roomId = params[:room_id]
         # TODO refactor!! remove room_id
         messages = Message.where(room_id: roomId)
+        users = UserRoom.where(room_id: roomId)
+        usersInRoom = []
+        users.each do |user|
+          usersInRoom.push(user.user_id)
+        end
+        return {
+          users: usersInRoom,
+          messages: messages
+        }
       end
 
       desc 'Add a message.'
       params do
-        requires :user_id, type: String, desc: 'user id'
+        optional :user_id, type: String, desc: 'user id'
         requires :message, type: String, desc: 'message'
       end
       post '/:room_id/messages/add' do
         check_session
-        message = Message.create(message: params[:message], user_id: params[:user_id], room_id: params[:room_id])
+        userId = params[:user_id] || env['rack.session'][:user_id]
+        message = Message.create(message: params[:message], user_id: userId, room_id: params[:room_id])
       end
 
       desc 'Delete messages.'

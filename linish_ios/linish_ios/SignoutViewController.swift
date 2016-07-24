@@ -26,12 +26,15 @@ class SignoutViewController: UIViewController {
     }
     
     func signoutButtonTapped(sender: UIButton) {
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/accounts/signout")
-            .responseJSON { response in
-                self.performSegueWithIdentifier("signoutCompletedSegue", sender: sender)
+        API.post("/accounts/signout") { response in
+            self.performSegueWithIdentifier("signoutCompletedSegue", sender: sender)
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let nextVC = segue.destinationViewController as UIViewController
+        nextVC.title = "ログイン"
+    }
 
     /*
     // MARK: - Navigation

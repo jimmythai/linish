@@ -6,7 +6,10 @@
 //  Copyright © 2016 Atsushi Yamamoto. All rights reserved.
 //
 
+import UIKit
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 class Regexp {
     let internalRegexp: NSRegularExpression
@@ -57,6 +60,62 @@ class Date {
         return formatter.stringFromDate(date)
     }
 }
+
+class API {
+    static let hostname: String = "http://localhost:3000"
+    static let subDirectory: String = "/api"
+    static let apiVersion: String = "/v1"
+    static var data: JSON = ""
+
+    class func makeUrl(path: String) -> String {
+        return hostname + subDirectory + apiVersion + path
+    }
+
+    class func get(path: String, completion : (JSON) -> ()) {
+        Alamofire.request(.GET, API.makeUrl(path))
+        .responseJSON { response in
+            print(response)
+            guard let data = response.result.value else {
+                return
+            }
+            completion(JSON(data))
+        }
+    }
+
+    class func post(path: String, parameters: [String: AnyObject] = ["": ""], completion : (JSON) -> ()) {
+        Alamofire.request(.POST, API.makeUrl(path), parameters: parameters)
+            .responseJSON { response in
+                guard let data = response.result.value else {
+                    return
+                }
+                completion(JSON(data))
+        }
+    }
+}
+
+func getUUID() -> String {
+    return ""
+}
+
+
+//enum UIBarButtonHiddenItem: Int {
+//    case Previous = 101
+//    case Next     = 102
+//    case Up       = 103
+//    case Down     = 104
+//    case Locate   = 100
+//    case Trash    = 110
+//    func convert() -> UIBarButtonSystemItem {
+//        return UIBarButtonSystemItem(rawValue: self.rawValue)!
+//    }
+//}
+//
+//extension UIBarButtonItem {
+//    convenience init(barButtonHiddenItem item:UIBarButtonHiddenItem, target: AnyObject?, action: Selector) {
+//        self.init(barButtonSystemItem: item.convert(), target:target, action: action)
+//    }
+//}
+
 
 //// HTTP-GET
 //func getAsync(sender: AnyObject) {

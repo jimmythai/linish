@@ -8,19 +8,23 @@
 
 import UIKit
 import JSQMessagesViewController
+import Alamofire
+import SwiftyJSON
 
 class MessagesViewController: JSQMessagesViewController {
     
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     var messages = [JSQMessage]()
+    
+    var selectedRoom:Int = 0
+    var userId:String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setup()
         self.addDemoMessages()
-
         // Do any additional setup after loading the view.
     }
 
@@ -28,29 +32,31 @@ class MessagesViewController: JSQMessagesViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func reloadMessagesView() {
         self.collectionView?.reloadData()
     }
-    
+
     func addDemoMessages() {
-        print("addDemoMessages")
-        for i in 1...10 {
-            let sender = (i%2 == 0) ? "Server" : self.senderId
-            let messageContent = "Message nr. \(i)"
+        API.get("/rooms/\(self.selectedRoom)/messages") { response in
+            self.showMessages(response)
+        }
+    }
+
+    func showMessages(response: JSON) {
+        for (index,message):(String, JSON) in response["messages"] {
+            let sender = message["user_id"].string
+            let messageContent = message["message"].string
             let message = JSQMessage(senderId: sender, displayName: sender, text: messageContent)
             self.messages += [message]
         }
-        print(self.messages)
         self.reloadMessagesView()
     }
-    
+
     func setup() {
-        print(UIDevice.currentDevice().identifierForVendor?.UUIDString)
-        self.senderId = UIDevice.currentDevice().identifierForVendor?.UUIDString
-        self.senderDisplayName = UIDevice.currentDevice().identifierForVendor?.UUIDString
+        self.senderId = self.userId
+        self.senderDisplayName = self.userId
     }
-    
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.messages.count
@@ -80,9 +86,16 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
-        self.messages += [message]
-        self.finishSendingMessage()
+        let parameters = [
+            "message": text
+        ]
+
+        Alamofire.request(.POST, "http://localhost:3000/api/v1/rooms/\(self.selectedRoom)/messages/add", parameters: parameters)
+            .responseJSON { response in
+                let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
+                self.messages += [message]
+                self.finishSendingMessage()
+        }
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {

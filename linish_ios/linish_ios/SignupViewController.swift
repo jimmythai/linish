@@ -55,11 +55,6 @@ class SignupViewController: UIViewController {
             errors.append("パスワードは8文字以上100文字以内で入力してください")
         }
 
-        
-//        let error = errors.joinWithSeparator("\n")
-//        let alert = UIAlertController(title: "Input Error", message: error, preferredStyle: .Alert)
-//        presentViewController(alert, animated: true, completion: nil)
-        
         if !errors.isEmpty {
             let error = errors.joinWithSeparator("\n")
             let alert = UIAlertController(title: "Signup Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
@@ -74,29 +69,33 @@ class SignupViewController: UIViewController {
             let parameters = [
                 "user_id": userid!,
                 "password": password!,
-                "email": finalEmail!
+                "email": finalEmail!,
+                "uuid": UIDevice.currentDevice().identifierForVendor!.UUIDString
             ]
-            Alamofire.request(.POST, "http://localhost:3000/api/v1/accounts/signup", parameters: parameters)
-                .responseJSON { response in
-                    let json = JSON(response.result.value!)
-                    if json["code"] == 400 {
-                        print("ERROR")
-                        // TODO refactor!! Make alert utility
-                        let alert = UIAlertController(title: "Duplicate account", message: "入力したユーザー名またはメールアドレスはすでに登録されています", preferredStyle: UIAlertControllerStyle.Alert)
-                        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
-                            (action: UIAlertAction!) -> Void in
-                            print("OK")
-                        })
-                        alert.addAction(defaultAction)
-                        self.presentViewController(alert, animated: true, completion: nil)
-                        return
-                    } else {
-                        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-                        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MainTabBarViewController") as UIViewController
-                        appDelegate.window?.rootViewController = initialViewController
-                        appDelegate.window?.makeKeyAndVisible()
-                    }
+            
+            API.post("/accounts/signup", parameters: parameters) { response in
+                self.signoutFromAccount(response)
             }
+        }
+    }
+
+    func signoutFromAccount(response: JSON) {
+        if response["code"] == 400 {
+            print("ERROR")
+            // TODO refactor!! Make alert utility
+            let alert = UIAlertController(title: "Duplicate account", message: "入力したユーザー名またはメールアドレスはすでに登録されています", preferredStyle: UIAlertControllerStyle.Alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        } else {
+            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MainTabBarViewController") as UIViewController
+            appDelegate.window?.rootViewController = initialViewController
+            appDelegate.window?.makeKeyAndVisible()
         }
     }
     

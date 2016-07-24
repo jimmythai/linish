@@ -13,34 +13,30 @@ import SwiftyJSON
 class FriendsTableViewController: UITableViewController {
     
     @IBOutlet weak var friendListTableView: UITableView!
+    
+    @IBAction func unwindToFriends(segue: UIStoryboardSegue) {
+    }
+
+    var friends:[String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO add api
-        Alamofire.request(.GET, "http://localhost:3000/api/v1/rooms")
-            .responseJSON { response in
-                let json = JSON(response.result.value!)
-
-//                func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//                    let cell = tableView.dequeueReusableCellWithIdentifier("friendListItem") as! FriendListTableViewCell
-//                    cell.itemLabel.text = json[][indexPath.row]
-//                    return cell
-//                }
-                
-                print(json)
-                print(json["updated_at"])
-//                let dateFormatter = NSDateFormatter()
-//                dateFormatter.locale = NSLocale(localeIdentifier: "en_US") // ロケールの設定
-//                dateFormatter.dateFormat = "MM/dd HH:mm"
-//                self.dateField.text = dateFormatter.stringFromDate(json["updated_at"])
-                
+        self.friendListTableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
+        getFriends()
+    }
+    
+    func getFriends() {
+        API.get("/friends") { response in
+            self.showFriends(response)
         }
+    }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    func showFriends(response: JSON) {
+        for i in 0..<response.count {
+            print(response)
+            self.friends.append(response[i].string!)
+        }
+        self.friendListTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,19 +44,35 @@ class FriendsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("friendListItem") as! FriendListTableViewCell
+        let row = self.friends[indexPath.row]
+        print(row)
+        cell.friendUsername.text = row
+        return cell
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return friends.count
     }
     
-    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let row = indexPath.row
+        let friend = self.friends[row]
+        let parameters = [
+            "user_ids": [friend]
+        ]
+
+        API.post("/friends/delete", parameters: parameters) { response in
+            if response["code"] == 400 {
+                return
+            } else {
+                self.friends.removeAtIndex(row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+        }
+    }
+    // MARK: - Table view data source
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -118,3 +130,4 @@ class FriendsTableViewController: UITableViewController {
     */
 
 }
+

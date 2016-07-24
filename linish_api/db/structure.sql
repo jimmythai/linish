@@ -50,7 +50,27 @@ CREATE TABLE `messages` (
   KEY `index_messages_on_room_id` (`room_id`),
   CONSTRAINT `fk_rails_273a25a7a6` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `fk_rails_a8db0fb63a` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `relationships`
+--
+
+DROP TABLE IF EXISTS `relationships`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `relationships` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `follower_id` varchar(25) NOT NULL,
+  `followed_id` varchar(25) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_relationships_on_follower_id_and_followed_id` (`follower_id`,`followed_id`),
+  KEY `index_relationships_on_follower_id` (`follower_id`),
+  KEY `index_relationships_on_followed_id` (`followed_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +85,7 @@ CREATE TABLE `rooms` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +140,7 @@ CREATE TABLE `user_rooms` (
   KEY `index_user_rooms_on_room_id` (`room_id`),
   CONSTRAINT `fk_rails_3ee87d0014` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `fk_rails_577ff954d1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=232 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,12 +157,12 @@ CREATE TABLE `users` (
   `password_digest` varchar(255) NOT NULL,
   `avatar_image` mediumblob,
   `version_number` int(11) DEFAULT NULL,
-  `device_token` int(11) DEFAULT NULL,
+  `uuid` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `index_users_on_email` (`email`),
-  UNIQUE KEY `index_users_on_device_token` (`device_token`)
+  UNIQUE KEY `index_users_on_uuid` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -159,7 +179,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-21 10:15:40
-INSERT INTO schema_migrations (version) VALUES ('20160713153231'), ('20160713154943'), ('20160714005916'), ('20160714103117'), ('20160714111153'), ('20160721002245');
+-- Dump completed on 2016-07-22 22:02:48
+INSERT INTO schema_migrations (version) VALUES ('20160713153231'), ('20160713154943'), ('20160714005916'), ('20160714103117'), ('20160714111153'), ('20160721002245'), ('20160721025903'), ('20160722125444');
 
 

@@ -16,11 +16,11 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.settingTableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func cancelToSetting(segue: UIStoryboardSegue) {
+    @IBAction func unwindToSetting(segue: UIStoryboardSegue) {
         
     }
 

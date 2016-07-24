@@ -19168,3 +19168,103 @@ Started GET "/api/v1/rooms" for ::1 at 2016-07-21 11:23:42 +0900
   [1m[36mUserRoom Load (0.3ms)[0m  [1m[34mSELECT `user_rooms`.* FROM `user_rooms` WHERE `user_rooms`.`room_id` = 8[0m
   [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  `rooms`.* FROM `rooms` WHERE `rooms`.`room_id` = 9 LIMIT 1[0m
   [1m[36mUserRoom Load (0.3ms)[0m  [1m[34mSELECT `user_rooms`.* FROM `user_rooms` WHERE `user_rooms`.`room_id` = 9[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('7474166910291800565', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateRelationships (20160721025903)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('7474166910291800565')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('7474166910291800565', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateRelationships (20160721025903)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('7474166910291800565')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('7474166910291800565', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateRelationships (20160721025903)
+  [1m[35m (22.3ms)[0m  [1m[35mCREATE TABLE `relationships` (`id` BIGINT PRIMARY KEY AUTO_INCREMENT, `follower_id` varchar(25) NOT NULL, `followed_id` varchar(25) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE  INDEX `index_relationships_on_follower_id`  ON `relationships` (`follower_id`) [0m
+  [1m[35m (12.3ms)[0m  [1m[35mCREATE  INDEX `index_relationships_on_followed_id`  ON `relationships` (`followed_id`) [0m
+  [1m[35m (17.0ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_relationships_on_follower_id_and_followed_id`  ON `relationships` (`follower_id`, `followed_id`) [0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160721025903')[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('7474166910291800565')[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY version[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam111' LIMIT 1[0m
+  [1m[36mUser Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam111@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam111', 'ayamam111@gmail.com', '$2a$10$zHsI.ELWWqA8avwYjWn4D.K4i2rVA9yYIe3QEhyQYhSdUsxKvJcfS', '2016-07-21 03:30:16', '2016-07-21 03:30:16')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam112' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam112@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam112', 'ayamam112@gmail.com', '$2a$10$aewgxLSIF5kcLT1Tz7lxHe3.kFidCwA/EJMbwUxDvQPPJmE/2umpa', '2016-07-21 03:30:16', '2016-07-21 03:30:16')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam113' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam113@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam113', 'ayamam113@gmail.com', '$2a$10$oLJG.82DTQsIVGVvPdZbP.2o2Up4/ZZbcqHODeBdgGhyFbqsLneJy', '2016-07-21 03:30:16', '2016-07-21 03:30:16')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam114' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam114@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam114', 'ayamam114@gmail.com', '$2a$10$CfWs2CouMCtsmQtUVnJ16e2B02navW8RjRWjOi0OE6amNUP3AUWTe', '2016-07-21 03:30:16', '2016-07-21 03:30:16')[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam115' LIMIT 1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam115@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam115', 'ayamam115@gmail.com', '$2a$10$BCtfAItXYKPZtsv/OymDwOzes8FXfR8Y21xqCIbVhOaX2IKfcxXQm', '2016-07-21 03:30:17', '2016-07-21 03:30:17')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam116' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam116@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam116', 'ayamam116@gmail.com', '$2a$10$/NLjiGEx.TrY9fnGMCFiEu8MsFW5ZYJfycfcYdAi7AF08a28BWL72', '2016-07-21 03:30:17', '2016-07-21 03:30:17')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam117' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam117@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam117', 'ayamam117@gmail.com', '$2a$10$DIwObnIPBmq23EiprBoEbuWuvXgQczSm.90TI5YWiMOUModWeVCr2', '2016-07-21 03:30:17', '2016-07-21 03:30:17')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam118' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam118@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam118', 'ayamam118@gmail.com', '$2a$10$u.zFAacMNZAmrmIcYSZ8ceyL2eCGYjvy7HGafF1U4fsz1KzzqJR2C', '2016-07-21 03:30:17', '2016-07-21 03:30:17')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam119' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam119@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (3.7ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam119', 'ayamam119@gmail.com', '$2a$10$wZOBhzPgZkL8VQZw8PkBrOp1Y6JJ7teSltmHmsA8L5dDxGRAgwhQ2', '2016-07-21 03:30:17', '2016-07-21 03:30:17')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`user_id` = BINARY 'ayamam1110' LIMIT 1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'ayamam1110@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`user_id`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('ayamam1110', 'ayamam1110@gmail.com', '$2a$10$k0nW4epP53mAQlkj9IKmSeY88n8bL4A96UyBZU.crIhbk8T/lOB7G', '2016-07-21 03:30:17', '2016-07-21 03:30:17')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`user_id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT GET_LOCK('7474166910291800565', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (7.1ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to ChangeDeviceTokenColumnDatatypeToUuid (20160722125444)
+  [1m[35m (3.5ms)[0m  [1m[35mALTER TABLE `users` CHANGE `device_token` `device_token` varchar[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT RELEASE_LOCK('7474166910291800565')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('7474166910291800565', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (9.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to ChangeDeviceTokenColumnDatatypeToUuid (20160722125444)
+  [1m[35m (227.1ms)[0m  [1m[35mALTER TABLE `users` CHANGE `device_token` `device_token` varchar(255)[0m
+  [1m[35m (18.7ms)[0m  [1m[35mALTER TABLE `users` CHANGE `device_token` `uuid` varchar(255)[0m
+  [1m[35m (12.9ms)[0m  [1m[35mALTER TABLE `users` RENAME INDEX `index_users_on_device_token` TO `index_users_on_uuid`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160722125444')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('7474166910291800565')[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY version[0m

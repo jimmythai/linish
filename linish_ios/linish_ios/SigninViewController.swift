@@ -15,6 +15,16 @@ class SigninViewController: UIViewController {
 
     @IBOutlet weak var useridField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    @IBAction func unwindToSignin(segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if let tabBarController = self.tabBarController {
+            tabBarController.tabBar.hidden = true
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,29 +66,35 @@ class SigninViewController: UIViewController {
             alert.addAction(defaultAction)
             presentViewController(alert, animated: true, completion: nil)
         } else {
-            let parameters = ["user_id": userid!, "password": password!]
-            Alamofire.request(.POST, "http://localhost:3000/api/v1/accounts/signin", parameters: parameters)
-                .responseJSON { response in
-                    let json = JSON(response.result.value!)
-                    if json["code"] == 400 {
-                        // TODO refactor!! Make alert utility
-                        let alert = UIAlertController(title: "Login Failure", message: "ユーザーIDまたはパスワードが違います", preferredStyle: UIAlertControllerStyle.Alert)
-                        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
-                            (action: UIAlertAction!) -> Void in
-                            print("OK")
-                        })
-                        alert.addAction(defaultAction)
-                        self.presentViewController(alert, animated: true, completion: nil)
-                    } else {
-                        // ref1: http://stackoverflow.com/questions/25326647/present-view-controller-in-storyboard-with-a-navigation-controller-swift
-                        // ref2: http://stackoverflow.com/questions/32224416/swift-how-to-show-a-tab-bar-controller-after-a-login-view
-                        
-                        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-                        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MainTabBarViewController") as UIViewController
-                        appDelegate.window?.rootViewController = initialViewController
-                        appDelegate.window?.makeKeyAndVisible()
-                    }
-                }
+            let parameters = [
+                "user_id": userid!,
+                "password": password!,
+                "uuid": UIDevice.currentDevice().identifierForVendor!.UUIDString
+            ]
+
+            API.post("/accounts/signin", parameters: parameters) { response in
+                self.signinToAcount(response)
+            }
+        }
+    }
+
+    func signinToAcount(response: JSON) {
+        if (response["code"] == 400) {
+            let alert = UIAlertController(title: "Login Failure", message: "ユーザーIDまたはパスワードが違います", preferredStyle: UIAlertControllerStyle.Alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            // ref1: http://stackoverflow.com/questions/25326647/present-view-controller-in-storyboard-with-a-navigation-controller-swift
+            // ref2: http://stackoverflow.com/questions/32224416/swift-how-to-show-a-tab-bar-controller-after-a-login-view
+            
+            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MainTabBarViewController") as UIViewController
+            appDelegate.window?.rootViewController = initialViewController
+            appDelegate.window?.makeKeyAndVisible()
         }
     }
     

@@ -28,10 +28,8 @@ class DeleteAccountViewController: UIViewController {
     }
     
     func deleteButtonTapped(sender: UIButton) {
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/accounts/delete")
-            .responseJSON { response in
-                self.navigationController?.popViewControllerAnimated(true)
-//                self.performSegueWithIdentifier("deleteAccountCompletedSegue", sender: sender)
+        API.post("/accounts/delete") { response in
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
     
