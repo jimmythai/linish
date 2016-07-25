@@ -20,8 +20,6 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         getFriends()
-        
-        self.friendsTableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
         self.friendsTableView.delegate = self
         self.friendsTableView.dataSource = self
 
@@ -49,6 +47,8 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChooseFriendsTableViewCell") as! ChooseFriendsTableViewCell
         let userId = self.friends[indexPath.row]
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsetsZero
         cell.friendUsername.text = userId
         return cell
     }

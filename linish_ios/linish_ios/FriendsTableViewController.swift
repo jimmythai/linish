@@ -21,10 +21,13 @@ class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.friendListTableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
-        getFriends()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        getFriends()
+    }
+
     func getFriends() {
         API.get("/friends") { response in
             self.showFriends(response)
@@ -32,8 +35,8 @@ class FriendsTableViewController: UITableViewController {
     }
 
     func showFriends(response: JSON) {
+        self.friends = []
         for i in 0..<response.count {
-            print(response)
             self.friends.append(response[i].string!)
         }
         self.friendListTableView.reloadData()
@@ -47,7 +50,8 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("friendListItem") as! FriendListTableViewCell
         let row = self.friends[indexPath.row]
-        print(row)
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsetsZero
         cell.friendUsername.text = row
         return cell
     }

@@ -16,7 +16,6 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.settingTableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
         // Do any additional setup after loading the view.
     }
     
@@ -31,6 +30,8 @@ class SettingViewController: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("settingTableViewCell") as! SettingTableViewCell
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsetsZero
         cell.settingItem.text = self.items[indexPath.row]
         return cell
     }

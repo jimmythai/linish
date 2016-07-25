@@ -61,7 +61,6 @@ class SigninViewController: UIViewController {
             let alert = UIAlertController(title: "Login Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("OK")
             })
             alert.addAction(defaultAction)
             presentViewController(alert, animated: true, completion: nil)
@@ -83,7 +82,6 @@ class SigninViewController: UIViewController {
             let alert = UIAlertController(title: "Login Failure", message: "ユーザーIDまたはパスワードが違います", preferredStyle: UIAlertControllerStyle.Alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("OK")
             })
             alert.addAction(defaultAction)
             self.presentViewController(alert, animated: true, completion: nil)

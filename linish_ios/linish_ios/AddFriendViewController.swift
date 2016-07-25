@@ -21,19 +21,6 @@ class AddFriendViewController: UIViewController {
     @IBAction func findFriend(sender: UIButton) {
         let userId = self.findFriendTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         if !(userId?.isEmpty ?? true) {
-            Alamofire.request(.GET, "http://localhost:3000/api/v1/accounts/\(userId!)")
-                .responseJSON { response in
-                    let json = JSON(response.result.value!)
-                    if json["code"] == 400 {
-                        self.errorMessage.text = json["error"].string
-                        self.errorMessage.hidden = false
-                    } else {
-                        self.userName.text = userId
-                        self.userName.hidden = false
-                        self.addFriendButton.hidden = false
-                    }
-            }
-            
             API.get("/accounts/\(userId!)") { response in
                 if response["code"] == 400 {
                     self.errorMessage.text = response["error"].string
@@ -77,6 +64,15 @@ class AddFriendViewController: UIViewController {
             self.errorMessage.hidden = true
         }
     }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showMessagesFromChats" {
+//            let nextVC:MessagesViewController = segue.destinationViewController as! MessagesViewController
+//            nextVC.selectedRoom = self.selectedRoom
+//            nextVC.title = self.selectedMembers
+//            nextVC.userId = self.userId
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

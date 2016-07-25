@@ -89,12 +89,11 @@ class MessagesViewController: JSQMessagesViewController {
         let parameters = [
             "message": text
         ]
-
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/rooms/\(self.selectedRoom)/messages/add", parameters: parameters)
-            .responseJSON { response in
-                let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
-                self.messages += [message]
-                self.finishSendingMessage()
+        
+        API.post("/rooms/\(self.selectedRoom)/messages/add", parameters: parameters) { response in
+            let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
+            self.messages += [message]
+            self.finishSendingMessage()
         }
     }
     

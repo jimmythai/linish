@@ -60,11 +60,9 @@ class SignupViewController: UIViewController {
             let alert = UIAlertController(title: "Signup Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("OK")
             })
             alert.addAction(defaultAction)
             presentViewController(alert, animated: true, completion: nil)
-            print("CLIENT ERROR")
         } else {
             let parameters = [
                 "user_id": userid!,
@@ -81,12 +79,10 @@ class SignupViewController: UIViewController {
 
     func signoutFromAccount(response: JSON) {
         if response["code"] == 400 {
-            print("ERROR")
             // TODO refactor!! Make alert utility
             let alert = UIAlertController(title: "Duplicate account", message: "入力したユーザー名またはメールアドレスはすでに登録されています", preferredStyle: UIAlertControllerStyle.Alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("OK")
             })
             alert.addAction(defaultAction)
             self.presentViewController(alert, animated: true, completion: nil)

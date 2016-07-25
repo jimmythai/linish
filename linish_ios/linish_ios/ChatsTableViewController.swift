@@ -24,10 +24,11 @@ class ChatsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.chatListTableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.chatListTableView.dataSource = self
-        
         // TODO add message and image in this API
         API.get("/rooms") { response in
             self.showRooms(response)
@@ -38,6 +39,8 @@ class ChatsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("chatListItem") as! ChatListTableViewCell
         let row = self.rooms[indexPath.row]
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsetsZero
         cell.chatDate.text = row["date"]!!
         cell.chatMembers.text = row["roomMembers"]!!
         return cell
@@ -86,6 +89,7 @@ class ChatsTableViewController: UITableViewController {
     }
     
     func showRooms(response: JSON) {
+        self.rooms = []
         response.forEach {(_, response) in
             var roomMembers: [String] = []
             if let roomMembersJSON = response["user_ids"].array {

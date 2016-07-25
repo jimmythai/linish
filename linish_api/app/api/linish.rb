@@ -82,7 +82,6 @@ module Linish
         optional :uuid, type: String, desc: 'uuid'
       end
       post :signin do
-        p params[:password]
         user = User.find_by(user_id: params[:user_id])
         doesUserExist = !user.nil?
         isAuthenticated = doesUserExist && user.authenticate(params[:password])
