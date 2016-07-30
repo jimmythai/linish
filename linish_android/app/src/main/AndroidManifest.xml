@@ -34,8 +34,7 @@
         <activity android:name=".SignoutActivity" />
         <activity android:name=".AddFriendActivity" />
         <activity android:name=".AddChatActivity" />
-        <activity android:name=".AddChatsAdapter" />
-        <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".MessageActivity" />
     </application>
 
 </manifest>

@@ -58,7 +58,7 @@ public class FragmentTabSetting extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(this.context, callActivityClassName(position));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.context.startActivity(intent);
     }
 

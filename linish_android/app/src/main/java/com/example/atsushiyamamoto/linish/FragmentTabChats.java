@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -162,9 +163,22 @@ public class FragmentTabChats extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-//        Intent intent = new Intent(this.context, callActivityClassName(position));
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        this.context.startActivity(intent);
+        Context context = getContext();
+        Object roomObject = adapter.getItem(position);
+        final Map<String, Object> room = (Map) roomObject;
+        List<String> users = (List<String>) room.get("user_ids");
+        Double roomId = (Double) room.get("room_id");
+
+        ArrayList<String> membersArray = new ArrayList<String>();
+        for (int i = 0, len = users.size(); i < len; i++) {
+            membersArray.add(users.get(i).toString());
+        }
+
+        Intent intent = new Intent(context, MessageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putStringArrayListExtra("membersArray", membersArray);
+        intent.putExtra("roomId", roomId.intValue());
+        startActivity(intent);
     }
 
     @Override

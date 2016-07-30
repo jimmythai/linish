@@ -53,7 +53,7 @@ module Linish
     end
 
     resource :accounts do
-      desc 'Return users.'
+      desc 'Return user.'
       params do
         requires :access_token, type: String, desc: "access token"
       end
@@ -312,6 +312,7 @@ module Linish
         authenticate!
         userId = @current_user.user_id
         message = Message.create(message: params[:message], user_id: userId, room_id: params[:room_id])
+        message
       end
 
       desc 'Delete messages.'

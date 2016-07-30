@@ -109,12 +109,13 @@ public class AddChatActivity extends AppCompatActivity {
                                     adapter = new AddChatAdapter(context, friends, button);
                                     list.setAdapter(adapter);
 
-                                    Intent intent = new Intent(context, MessageActivity.class);
-                                    intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                                     ArrayList<String> membersArray = new ArrayList<String>();
                                     for (int i = 0, len = membersJsonArray.size(); i < len; i++) {
                                         membersArray.add(membersJsonArray.get(i).toString());
                                     }
+
+                                    Intent intent = new Intent(context, MessageActivity.class);
+                                    intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                                     intent.putStringArrayListExtra("membersArray", membersArray);
                                     startActivity(intent);
                                 }
