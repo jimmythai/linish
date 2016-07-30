@@ -14,6 +14,7 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var friends:[String] = []
     var selectedFriends:[String] = []
+    var selectedRoom: Int = 0
 
     @IBOutlet weak var friendsTableView: UITableView!
 
@@ -32,7 +33,11 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        setBackButtonForNextPage()
+        if segue.identifier == "showMessagesFromChooseFriends" {
+            let nextVC:MessagesViewController = segue.destinationViewController as! MessagesViewController
+            nextVC.selectedRoom = self.selectedRoom
+            setBackButtonForNextPage()
+        }
     }
 
     func getFriends() {
@@ -104,22 +109,12 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
         ]
 
         API.post("/rooms/create", parameters: parameters) { response in
+            print("HOGEHGOEHGOEHGOEG")
+            print(response["room_id"])
+            print("FUFEFEUFUEFUE")
+            self.selectedRoom = response["room_id"].intValue
             self.performSegueWithIdentifier("showMessagesFromChooseFriends", sender: self)
         }
     }
-
-    
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

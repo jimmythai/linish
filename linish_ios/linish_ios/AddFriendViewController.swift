@@ -21,7 +21,7 @@ class AddFriendViewController: UIViewController {
     @IBAction func findFriend(sender: UIButton) {
         let userId = self.findFriendTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         if !(userId?.isEmpty ?? true) {
-            API.get("/accounts/\(userId!)") { response in
+            API.get("/accounts/" + userId!) { response in
                 if response["code"] == 400 {
                     self.errorMessage.text = response["error"].string
                     self.errorMessage.hidden = false

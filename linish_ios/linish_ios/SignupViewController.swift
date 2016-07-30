@@ -67,8 +67,7 @@ class SignupViewController: UIViewController {
             let parameters = [
                 "user_id": userid!,
                 "password": password!,
-                "email": finalEmail!,
-                "uuid": UIDevice.currentDevice().identifierForVendor!.UUIDString
+                "email": finalEmail!
             ]
             
             API.post("/accounts/signup", parameters: parameters) { response in
@@ -88,6 +87,10 @@ class SignupViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             return
         } else {
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setObject(response["access_token"].string, forKey: "access_token")
+            userDefaults.synchronize()
+
             let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
             let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MainTabBarViewController") as UIViewController
             appDelegate.window?.rootViewController = initialViewController

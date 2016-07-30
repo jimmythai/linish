@@ -26,8 +26,8 @@ class ChatsTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.chatListTableView.dataSource = self
         // TODO add message and image in this API
         API.get("/rooms") { response in
@@ -97,11 +97,12 @@ class ChatsTableViewController: UITableViewController {
                     roomMembers.append(roomMemberJSON.string!)
                 }
             }
+
             var roomMembersString:String = "Empty room"
             if (!roomMembers.isEmpty) {
                 roomMembersString = roomMembers.joinWithSeparator(", ")
             }
-            
+
             let updatedAt: String = response["updated_at"].string!.stringByReplacingOccurrencesOfString("T", withString: " ")
             let substringedUpdatedAt = updatedAt.substringToIndex(updatedAt.endIndex.advancedBy(-5))
             let dateFormat = "yy/M/dd H:mm:ss"
@@ -119,7 +120,7 @@ class ChatsTableViewController: UITableViewController {
     }
 
     func getUserId() {
-        API.get("/accounts?uuid=\(UIDevice.currentDevice().identifierForVendor!.UUIDString)") { response in
+        API.get("/accounts") { response in
             let userId = response["user_id"].string!
             self.userId = userId
         }

@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.atsushiyamamoto.linish.FragmentTabChats">
+    <item
+        android:id="@+id/action_add_chat"
+        android:icon="@drawable/ic_comment_plus_outline_white_48dp"
+        android:title="test"
+        app:showAsAction="always" />
+</menu>

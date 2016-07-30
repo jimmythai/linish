@@ -70,9 +70,27 @@ class API {
     class func makeUrl(path: String) -> String {
         return hostname + subDirectory + apiVersion + path
     }
+    
+    class func makeUrlWithAccessToken(path: String) -> String {
+        return API.makeUrl(path) + "?access_token=" + getAccessToken()
+    }
+    
+    class func getAccessToken() -> String {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let accessToken = userDefaults.objectForKey("access_token") as! String
+        return accessToken
+    }
 
     class func get(path: String, completion : (JSON) -> ()) {
-        Alamofire.request(.GET, API.makeUrl(path))
+        var url: String = ""
+
+        if path == "/accounts/signin" || path == "/accounts/signup" {
+            url = API.makeUrl(path)
+        } else {
+            url = API.makeUrlWithAccessToken(path)
+        }
+        
+        Alamofire.request(.GET, url)
         .responseJSON { response in
             print(response)
             guard let data = response.result.value else {
@@ -83,7 +101,12 @@ class API {
     }
 
     class func post(path: String, parameters: [String: AnyObject] = ["": ""], completion : (JSON) -> ()) {
-        Alamofire.request(.POST, API.makeUrl(path), parameters: parameters)
+        var requestParameters:[String: AnyObject] = parameters
+        if !(path == "/accounts/signin" || path == "/accounts/signup") {
+            requestParameters["access_token"] = getAccessToken()
+        }
+
+        Alamofire.request(.POST, API.makeUrl(path), parameters: requestParameters)
             .responseJSON { response in
                 guard let data = response.result.value else {
                     return
@@ -91,10 +114,6 @@ class API {
                 completion(JSON(data))
         }
     }
-}
-
-func getUUID() -> String {
-    return ""
 }
 
 

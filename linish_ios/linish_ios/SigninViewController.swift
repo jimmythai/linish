@@ -67,8 +67,7 @@ class SigninViewController: UIViewController {
         } else {
             let parameters = [
                 "user_id": userid!,
-                "password": password!,
-                "uuid": UIDevice.currentDevice().identifierForVendor!.UUIDString
+                "password": password!
             ]
 
             API.post("/accounts/signin", parameters: parameters) { response in
@@ -86,9 +85,11 @@ class SigninViewController: UIViewController {
             alert.addAction(defaultAction)
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            // ref1: http://stackoverflow.com/questions/25326647/present-view-controller-in-storyboard-with-a-navigation-controller-swift
-            // ref2: http://stackoverflow.com/questions/32224416/swift-how-to-show-a-tab-bar-controller-after-a-login-view
-            
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            print(response["access_token"])
+            userDefaults.setObject(response["access_token"].string, forKey: "access_token")
+            userDefaults.synchronize()
+
             let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
             let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MainTabBarViewController") as UIViewController
             appDelegate.window?.rootViewController = initialViewController
