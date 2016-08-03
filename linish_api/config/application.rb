@@ -29,5 +29,7 @@ module LinishApi
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
     config.active_record.schema_format = :sql
+    # For ActionCable
+    config.action_cable.mount_path = '/cable'
   end
 end

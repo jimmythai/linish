@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var useridField: UITextField!
@@ -19,8 +19,29 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
+        
+        emailField.delegate = self
+        useridField.delegate = self
+        passwordField.delegate = self
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
+        
         // Do any additional setup after loading the view.
     }
+    
+    func dismissKeyboard() {
+        emailField.resignFirstResponder()
+        useridField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        emailField.resignFirstResponder()
+        useridField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        return true
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

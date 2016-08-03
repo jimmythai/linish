@@ -10,8 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+class SigninViewController: UIViewController, UITextFieldDelegate {
 
-class SigninViewController: UIViewController {
 
     @IBOutlet weak var useridField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -29,8 +29,22 @@ class SigninViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-
-        // Do any additional setup after loading the view.
+        
+        
+        useridField.delegate = self
+        passwordField.delegate = self
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
+    }
+    
+    func dismissKeyboard() {
+        useridField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        useridField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +89,54 @@ class SigninViewController: UIViewController {
             }
         }
     }
+
+    func connectToWebSocket() {
+//        var messageNum = 0
+//        let ws = WebSocket()
+//        ws.open("ws://192.168.100.179:3000/cable")  // or, reopen the socket to a new url
+//        let send : ()->() = {
+//            let msg = "\(messageNum+=1): \(NSDate().description)"
+//            print("send: \(msg)")
+//            ws.send(msg)
+//        }
+//        ws.event.open = {
+//            print("opened")
+//            send()
+//        }
+//        ws.event.close = { code, reason, clean in
+//            print("close")
+//        }
+//        ws.event.error = { error in
+//            print("error \(error)")
+//        }
+//        ws.event.message = { message in
+//            if let text = message as? String {
+//                print("recv: \(text)")
+//                if messageNum == 10 {
+//                    ws.close()
+//                } else {
+//                    send()
+//                }
+//            }
+//        }
+    }
+    
+//    func connectToActionCable() {
+//        let client = ActionCableClient(URL: NSURL(string: "ws://192.168.100.179:3000/cable")!)
+//        
+//        // Connect!
+//        client.connect()
+//        
+//        print(client.debugDescription)
+//        
+//        client.onConnected = {
+//            print("Connected!")
+//        }
+//        
+//        client.onDisconnected = {(error: ErrorType?) in
+//            print("Disconnected!")
+//        }
+//    }
 
     func signinToAcount(response: JSON) {
         if (response["code"] == 400) {

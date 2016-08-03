@@ -1,10 +1,13 @@
 package com.example.atsushiyamamoto.linish;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.zip.Inflater;
 //import java.lang.Runnable;
 import java.io.IOException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,7 +37,13 @@ import android.widget.ListView;
 
 import com.google.common.base.Joiner;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.hosopy.actioncable.ActionCable;
+import com.hosopy.actioncable.ActionCableException;
+import com.hosopy.actioncable.Channel;
+import com.hosopy.actioncable.Consumer;
+import com.hosopy.actioncable.Subscription;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -49,6 +58,10 @@ public class FragmentTabFriends extends ListFragment {
     ListView list;
     List<String> friends;
     BaseAdapter adapter;
+    Consumer consumer;
+    Map<String, ?> account;
+    Channel friendsChannel = new Channel("FriendsChannel");
+    Channel friendsDeleteChannel = new Channel("FriendsDeleteChannel");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,14 +70,163 @@ public class FragmentTabFriends extends ListFragment {
         Map resMap = null;
         setHasOptionsMenu(true);
         showFriends();
+        getAccountInformation();
+        System.out.println("onCreateView");
 
         return friendsTabView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        showFriends();
+    protected void getAccountInformation() {
+        new API() {
+            @Override
+            protected String doInBackground(Void... params) {
+                try {
+                    getAsync("/accounts", getActivity(), new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            try {
+                                account = makeResponseMap(response);
+                                final Activity activity = getActivity();
+                                activity.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        try {
+                                            String actionCableUri = new API().makeActionCableUri();
+                                            URI uri = new URI(actionCableUri);
+                                            consumer = ActionCable.createConsumer(uri);
+
+                                            String userId = account.get("user_id").toString();
+                                            receiveAddFriendsAction(userId);
+                                            receiveRemoveFriendsAction(userId);
+
+                                            consumer.connect();
+                                        } catch (URISyntaxException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                            } catch (IOException e) {
+
+                            }
+                        }
+                    });
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+        }.execute();
+    }
+
+    public void receiveAddFriendsAction(final String userId) {
+
+            Subscription subscription = consumer.getSubscriptions().create(friendsChannel);
+
+            subscription.onConnected(new Subscription.ConnectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("YAY!");
+                }
+            });
+            subscription.onRejected(new Subscription.RejectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("NO WAY!");
+                }
+            });
+            subscription.onReceived(new Subscription.ReceivedCallback() {
+                @Override
+                public void call(final JsonElement data) {
+                    System.out.println("RECEIVED");
+                    if(getActivity() == null)
+                        return;
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            JsonObject gsonData = data.getAsJsonObject();
+                            String followerId = gsonData.get("follower_id").getAsString();
+                            String followedId = gsonData.get("followed_id").getAsString();
+
+                            if (followedId.equals(userId)) {
+                                friends.add(followerId);
+                                Collections.sort(friends);
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+                }
+            });
+            subscription.onDisconnected(new Subscription.DisconnectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("Bye");
+                }
+            });
+            subscription.onFailed(new Subscription.FailedCallback() {
+                @Override
+                public void call(ActionCableException e) {
+                    System.out.print("OH NO!");
+                }
+            });
+
+
+    }
+
+    public void receiveRemoveFriendsAction(final String userId) {
+
+            Subscription subscription = consumer.getSubscriptions().create(friendsDeleteChannel);
+
+            subscription.onConnected(new Subscription.ConnectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("YAY!");
+                }
+            });
+            subscription.onRejected(new Subscription.RejectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("NO WAY!");
+                }
+            });
+            subscription.onReceived(new Subscription.ReceivedCallback() {
+                @Override
+                public void call(final JsonElement data) {
+                    System.out.println("RECEIVED");
+                    if(getActivity() == null)
+                        return;
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            JsonObject gsonData = data.getAsJsonObject();
+                            String deletingId = gsonData.get("deleting_id").getAsString();
+                            String deletedId = gsonData.get("deleted_id").getAsString();
+
+                            if(deletedId.equals(userId)) {
+                                int position = friends.indexOf(deletingId);
+                                friends.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+                }
+            });
+
+            subscription.onDisconnected(new Subscription.DisconnectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("Bye");
+                }
+            });
+            subscription.onFailed(new Subscription.FailedCallback() {
+                @Override
+                public void call(ActionCableException e) {
+                    System.out.print("OH NO!");
+                }
+            });
     }
 
     protected void showFriends() {
@@ -89,8 +251,8 @@ public class FragmentTabFriends extends ListFragment {
                                         onListItemLongClick();
                                     }
                                 });
-
                             } catch (IOException e) {
+
                             }
                         }
                     });
@@ -110,6 +272,22 @@ public class FragmentTabFriends extends ListFragment {
         System.out.println("HOGE");
         inflater.inflate(R.menu.menu_friends, menu);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showFriends();
+        System.out.println("onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("onPause");
+        consumer.disconnect();
+    }
+
+
 
 
     protected void onListItemLongClick() {

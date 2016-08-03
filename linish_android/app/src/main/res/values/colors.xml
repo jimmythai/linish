@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="linishSecondary">#3C4353</color>
+    <color name="linishPrimary">#17AF04</color>
+    <color name="linishDanger">#C10000</color>
+    <color name="linishTertiary">#AAAAAA</color>
+    <color name="linishPrimaryText">#333333</color>
+    <color name="linishSecodaryText">#939999</color>
 </resources>

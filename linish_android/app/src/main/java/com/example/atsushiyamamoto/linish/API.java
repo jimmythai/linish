@@ -12,6 +12,8 @@ import com.google.gson.JsonObject;
 //import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.List;
 
@@ -39,6 +41,10 @@ public class API extends AsyncTask<Void, Void, String> {
     final public static String SUB_DIRECTORY = "/api";
     final public static String API_VERSION = "/v1";
     final public static String PREF_NAME = "linish_prefs";
+
+    final public static String ACTIONCABLE_HOSTNAME = "ws://192.168.100.179:3000";
+    final public static String ACTIONCABLE_SUB_DIRECTORY = "/cable";
+
     public static OkHttpClient client = new OkHttpClient();
     public static Gson gson = new Gson();
     public static String url;
@@ -54,6 +60,10 @@ public class API extends AsyncTask<Void, Void, String> {
 
     public static String makeUrl(String path) {
         return HOSTNAME + SUB_DIRECTORY + API_VERSION + path;
+    }
+
+    public static String makeActionCableUri() {
+        return ACTIONCABLE_HOSTNAME + ACTIONCABLE_SUB_DIRECTORY;
     }
 
     public static String makeUrlWithAccessToken(String path, Context context) {

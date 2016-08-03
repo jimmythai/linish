@@ -74,7 +74,7 @@
 		0F327FE01D3D8B0500A413A6 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		0F327FE41D3DA82A00A413A6 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		0FDDBB151D3E04230022C3C2 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/linish_ios-erjquonoajjevzbcpfqqsxeuaohg/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		0FEDB5551D3929E50094C9E8 /* linish_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = linish_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FEDB5551D3929E50094C9E8 /* LINISH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LINISH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FEDB5581D3929E50094C9E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FEDB55A1D3929E50094C9E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0FEDB55D1D3929E50094C9E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		0FEDB5561D3929E50094C9E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0FEDB5551D3929E50094C9E8 /* linish_ios.app */,
+				0FEDB5551D3929E50094C9E8 /* LINISH.app */,
 				0FEDB56C1D3929E50094C9E8 /* linish_iosTests.xctest */,
 				0FEDB5771D3929E60094C9E8 /* linish_iosUITests.xctest */,
 			);
@@ -160,13 +160,14 @@
 		0FEDB5571D3929E50094C9E8 /* linish_ios */ = {
 			isa = PBXGroup;
 			children = (
-				0F0396E91D3F6A9B0065DA2E /* MessagesViewController.swift */,
 				0FEDB5581D3929E50094C9E8 /* AppDelegate.swift */,
-				0FEDB55A1D3929E50094C9E8 /* ViewController.swift */,
 				0FEDB5911D3A7A650094C9E8 /* SigninViewController.swift */,
 				0F327FE01D3D8B0500A413A6 /* SignupViewController.swift */,
 				0F0CDAF81D4062050091F96E /* SignoutViewController.swift */,
 				0F0CDAF41D3FC9590091F96E /* DeleteAccountViewController.swift */,
+				0F0CDAF61D4046F10091F96E /* DeleteAccountCompletionViewController.swift */,
+				0F0396E91D3F6A9B0065DA2E /* MessagesViewController.swift */,
+				0FEDB55A1D3929E50094C9E8 /* ViewController.swift */,
 				0FFED6721D3E0E9D00FF403A /* MainTabBarViewController.swift */,
 				0FFED67A1D3E343B00FF403A /* OthersViewController.swift */,
 				0FFED6801D3E546300FF403A /* ChatListTableViewCell.swift */,
@@ -175,14 +176,13 @@
 				0F0CDB001D41D1130091F96E /* AddFriendViewController.swift */,
 				0F0CDAF21D3FA6A00091F96E /* SettingTableViewCell.swift */,
 				0F0CDAFC1D40B3E50091F96E /* ChooseFriendsTableViewCell.swift */,
-				0F0CDAFA1D40B2670091F96E /* ChooseFriendsViewController.swift */,
-				0FEDB55C1D3929E50094C9E8 /* Main.storyboard */,
-				0F0CDAFE1D40CD290091F96E /* images */,
-				0F0CDAF61D4046F10091F96E /* DeleteAccountCompletionViewController.swift */,
 				0FFED6741D3E125100FF403A /* FriendsNavigationViewController.swift */,
 				0FFED6701D3E0D3700FF403A /* FriendsTableViewController.swift */,
 				0FFED67E1D3E4B1300FF403A /* FriendListTableViewCell.swift */,
+				0F0CDAFA1D40B2670091F96E /* ChooseFriendsViewController.swift */,
 				0F327FE41D3DA82A00A413A6 /* Utility.swift */,
+				0FEDB55C1D3929E50094C9E8 /* Main.storyboard */,
+				0F0CDAFE1D40CD290091F96E /* images */,
 				0FEDB5621D3929E50094C9E8 /* Assets.xcassets */,
 				0FEDB5641D3929E50094C9E8 /* LaunchScreen.storyboard */,
 				0FEDB5671D3929E50094C9E8 /* Info.plist */,
@@ -254,7 +254,7 @@
 			);
 			name = linish_ios;
 			productName = linish_ios;
-			productReference = 0FEDB5551D3929E50094C9E8 /* linish_ios.app */;
+			productReference = 0FEDB5551D3929E50094C9E8 /* LINISH.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0FEDB56B1D3929E50094C9E8 /* linish_iosTests */ = {
@@ -673,7 +673,7 @@
 				INFOPLIST_FILE = linish_ios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.atsushi.linish-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LINISH;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
@@ -693,7 +693,7 @@
 				INFOPLIST_FILE = linish_ios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.atsushi.linish-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LINISH;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};

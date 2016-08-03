@@ -9,7 +9,7 @@
         <!--Signin View Controller-->
         <scene sceneID="UnQ-H2-wjc">
             <objects>
-                <viewController id="oKA-kZ-iSt" customClass="SigninViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SigninViewController" id="oKA-kZ-iSt" customClass="SigninViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C1C-jl-e9G"/>
                         <viewControllerLayoutGuide type="bottom" id="eGD-eJ-aL6"/>
@@ -39,7 +39,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daI-Xa-WPj">
                                 <rect key="frame" x="20" y="206" width="374" height="38"/>
-                                <color key="backgroundColor" red="0.15686274509803921" green="0.70980392156862748" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.68627450980392157" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="5OH-1Y-2qf"/>
                                 </constraints>
@@ -99,20 +99,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ypv-M2-dv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iCv-3X-Odt"/>
             </objects>
             <point key="canvasLocation" x="-2052" y="1066"/>
         </scene>
         <!--友だち-->
         <scene sceneID="gPM-Os-cra">
             <objects>
-                <tableViewController storyboardIdentifier="FriendsTableViewController" id="CZc-Ec-zjD" customClass="FriendsTableViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FriendsTableViewController" id="CZc-Ec-zjD" customClass="FriendsTableViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="mET-pe-hx5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="friendListItem" id="H6k-A6-Pb4" customClass="FriendListTableViewCell" customModule="linish_ios" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="friendListItem" id="H6k-A6-Pb4" customClass="FriendListTableViewCell" customModule="LINISH" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6k-A6-Pb4" id="yic-1N-tSi">
@@ -159,11 +160,13 @@
             </objects>
             <point key="canvasLocation" x="470" y="2597"/>
         </scene>
-        <!--Friends-->
+        <!--Navigation Controller-->
         <scene sceneID="aes-5i-vOY">
             <objects>
                 <navigationController id="X4s-yF-dmz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" id="HJF-v7-4Us"/>
+                    <tabBarItem key="tabBarItem" title="" image="UserIcon" selectedImage="UserIconFilled" id="HJF-v7-4Us">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="HRs-Wu-pht">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -181,7 +184,7 @@
         <!--設定-->
         <scene sceneID="4rA-nZ-KwQ">
             <objects>
-                <viewController storyboardIdentifier="OthersViewController" id="X4G-cm-49H" customClass="SettingViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OthersViewController" id="X4G-cm-49H" customClass="SettingViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iI8-Bn-dfq"/>
                         <viewControllerLayoutGuide type="bottom" id="Ocz-gm-P1x"/>
@@ -190,20 +193,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-pb-r4w">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-pb-r4w">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="settingTableViewCell" id="hIf-sV-ycC" customClass="SettingTableViewCell" customModule="linish_ios" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="settingTableViewCell" id="hIf-sV-ycC" customClass="SettingTableViewCell" customModule="LINISH" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hIf-sV-ycC" id="Rwx-0A-YAN">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EE3-9A-wHF">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EE3-9A-wHF">
+                                                    <rect key="frame" x="8" y="11" width="551" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -249,7 +252,7 @@
         <!--退会する-->
         <scene sceneID="cDA-aa-f4L">
             <objects>
-                <viewController id="wak-i0-X0j" customClass="DeleteAccountViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wak-i0-X0j" customClass="DeleteAccountViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4kE-cl-eXT"/>
                         <viewControllerLayoutGuide type="bottom" id="cJp-Oy-tz9"/>
@@ -258,8 +261,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAz-Vw-ThO">
-                                <rect key="frame" x="20" y="571" width="374" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAz-Vw-ThO">
+                                <rect key="frame" x="20" y="620" width="374" height="38"/>
                                 <color key="backgroundColor" red="0.75686274509803919" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="退会する">
@@ -269,8 +272,8 @@
                                     <action selector="deleteButton:" destination="wak-i0-X0j" eventType="touchUpInside" id="ORa-SH-wTu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLd-H4-2Id">
-                                <rect key="frame" x="20" y="624" width="374" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLd-H4-2Id">
+                                <rect key="frame" x="20" y="673" width="374" height="38"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="キャンセル">
@@ -280,8 +283,8 @@
                                     <segue destination="WrX-ah-YYP" kind="unwind" unwindAction="unwindToSetting:" id="7nZ-PE-fdO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="本当にアカウントを削除しますか？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTJ-WQ-vO8">
-                                <rect key="frame" x="71" y="164" width="272" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本当にアカウントを削除しますか？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTJ-WQ-vO8">
+                                <rect key="frame" x="71" y="120" width="272" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -314,7 +317,7 @@
         <!--退会の完了-->
         <scene sceneID="UXy-hY-LM5">
             <objects>
-                <viewController id="Pfl-zv-jmf" customClass="DeleteAccountCompletionViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pfl-zv-jmf" customClass="DeleteAccountCompletionViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4rU-lh-PEX"/>
                         <viewControllerLayoutGuide type="bottom" id="3AY-cg-Xyz"/>
@@ -323,15 +326,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="退会が完了しました" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHy-KY-7Wt">
-                                <rect key="frame" x="131" y="164" width="153" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退会が完了しました" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHy-KY-7Wt">
+                                <rect key="frame" x="131" y="120" width="153" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewK-sA-Pbq">
-                                <rect key="frame" x="20" y="215" width="374" height="38"/>
-                                <color key="backgroundColor" red="0.16085105838988983" green="0.75686274509999996" blue="0.730780119891008" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewK-sA-Pbq">
+                                <rect key="frame" x="20" y="171" width="374" height="38"/>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.68627450980392157" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="新規会員登録">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -360,7 +363,7 @@
         <!--友だちを追加-->
         <scene sceneID="LHS-PY-r9q">
             <objects>
-                <viewController id="jq6-cG-pzK" customClass="AddFriendViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jq6-cG-pzK" customClass="AddFriendViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tBl-40-sDo"/>
                         <viewControllerLayoutGuide type="bottom" id="aTs-33-CFT"/>
@@ -377,13 +380,6 @@
                                     <action selector="findFriendChange:" destination="jq6-cG-pzK" eventType="editingChanged" id="C5R-AS-2AX"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoo-1n-c3n">
-                                <rect key="frame" x="542" y="104" width="30" height="30"/>
-                                <state key="normal" title="検索"/>
-                                <connections>
-                                    <action selector="findFriend:" destination="jq6-cG-pzK" eventType="touchUpInside" id="iaT-Ja-3Al"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mh-st-rBu">
                                 <rect key="frame" x="279" y="234" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -403,10 +399,20 @@
                                     <action selector="addFriend:" destination="jq6-cG-pzK" eventType="touchUpInside" id="6o5-DR-dJT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoo-1n-c3n">
+                                <rect key="frame" x="548" y="106" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="1W0-rI-Lhz"/>
+                                    <constraint firstAttribute="width" constant="26" id="Wgx-3z-HVb"/>
+                                </constraints>
+                                <state key="normal" image="MagnifierIcon"/>
+                                <connections>
+                                    <action selector="findFriend:" destination="jq6-cG-pzK" eventType="touchUpInside" id="iaT-Ja-3Al"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="xoo-1n-c3n" secondAttribute="trailing" id="3ci-l6-ZGS"/>
                             <constraint firstItem="Rip-Yk-YRa" firstAttribute="leading" secondItem="yf3-HP-EsO" secondAttribute="leadingMargin" id="6yF-Hi-igA"/>
                             <constraint firstItem="2Mh-st-rBu" firstAttribute="top" secondItem="Rip-Yk-YRa" secondAttribute="bottom" constant="100" id="G0p-U6-ZqV"/>
                             <constraint firstItem="LtJ-h9-46p" firstAttribute="top" secondItem="2Mh-st-rBu" secondAttribute="bottom" constant="15" id="IqH-bP-Ytf"/>
@@ -416,7 +422,8 @@
                             <constraint firstItem="Rip-Yk-YRa" firstAttribute="top" secondItem="tBl-40-sDo" secondAttribute="bottom" constant="40" id="TVg-Fi-dJM"/>
                             <constraint firstItem="auw-jl-cwQ" firstAttribute="top" secondItem="LtJ-h9-46p" secondAttribute="bottom" constant="20" id="UcP-6z-ffu"/>
                             <constraint firstItem="auw-jl-cwQ" firstAttribute="centerX" secondItem="yf3-HP-EsO" secondAttribute="centerX" id="WvV-9e-Lds"/>
-                            <constraint firstItem="xoo-1n-c3n" firstAttribute="top" secondItem="tBl-40-sDo" secondAttribute="bottom" constant="40" id="XpF-NL-Wbg"/>
+                            <constraint firstItem="xoo-1n-c3n" firstAttribute="top" secondItem="tBl-40-sDo" secondAttribute="bottom" constant="42" id="aLw-It-OW7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xoo-1n-c3n" secondAttribute="trailing" constant="6" id="rFM-4D-3at"/>
                             <constraint firstItem="Rip-Yk-YRa" firstAttribute="centerX" secondItem="yf3-HP-EsO" secondAttribute="centerX" id="xRb-Jw-PBW"/>
                         </constraints>
                     </view>
@@ -443,7 +450,7 @@
         <!--Signout-->
         <scene sceneID="slh-If-ioW">
             <objects>
-                <viewController storyboardIdentifier="SignoutViewController" title="Signout" id="kBR-RE-LfJ" customClass="SignoutViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignoutViewController" title="Signout" id="kBR-RE-LfJ" customClass="SignoutViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o99-4O-k1z"/>
                         <viewControllerLayoutGuide type="bottom" id="ijZ-K1-Beg"/>
@@ -452,9 +459,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8A-8X-mET">
-                                <rect key="frame" x="20" y="215" width="374" height="38"/>
-                                <color key="backgroundColor" red="0.15686274509803921" green="0.70980392156862748" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8A-8X-mET">
+                                <rect key="frame" x="20" y="171" width="374" height="38"/>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.68627450980392157" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="ログアウト">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -464,8 +471,8 @@
                                     <action selector="signoutButton:" destination="kBR-RE-LfJ" eventType="touchUpInside" id="B2r-iR-43b"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ログアウトしますか？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Es-ut-eIr">
-                                <rect key="frame" x="122" y="164" width="170" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ログアウトしますか？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Es-ut-eIr">
+                                <rect key="frame" x="122" y="120" width="170" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -494,22 +501,22 @@
         <!--Chats-->
         <scene sceneID="Oj6-Q7-wSl">
             <objects>
-                <tableViewController storyboardIdentifier="ChatsTableViewController" id="7ie-Wh-5eA" userLabel="Chats" customClass="ChatsTableViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChatsTableViewController" id="7ie-Wh-5eA" userLabel="Chats" customClass="ChatsTableViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="58M-Cf-HUg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="chatListItem" id="7tg-Eb-JeL" customClass="ChatListTableViewCell" customModule="linish_ios" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="chatListItem" id="7tg-Eb-JeL" customClass="ChatListTableViewCell" customModule="LINISH" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7tg-Eb-JeL" id="srb-rB-BY8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bny-rw-Grj">
-                                            <rect key="frame" x="532" y="8" width="27" height="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bny-rw-Grj">
+                                            <rect key="frame" x="565" y="8" width="27" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -562,7 +569,7 @@
         <!--友だちを選択-->
         <scene sceneID="jzl-Uf-vhP">
             <objects>
-                <viewController id="mbq-IE-tRC" customClass="ChooseFriendsViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mbq-IE-tRC" customClass="ChooseFriendsViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LIh-AK-hqx"/>
                         <viewControllerLayoutGuide type="bottom" id="YKd-Rs-zje"/>
@@ -576,7 +583,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ChooseFriendsTableViewCell" id="2Mb-Iz-s8w" customClass="ChooseFriendsTableViewCell" customModule="linish_ios" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ChooseFriendsTableViewCell" id="2Mb-Iz-s8w" customClass="ChooseFriendsTableViewCell" customModule="LINISH" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Mb-Iz-s8w" id="l98-SP-dAm">
@@ -637,7 +644,7 @@
         <!--Title-->
         <scene sceneID="hne-GG-FW8">
             <objects>
-                <viewController storyboardIdentifier="MessagesViewController" hidesBottomBarWhenPushed="YES" id="lyh-Hf-a2e" customClass="MessagesViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessagesViewController" hidesBottomBarWhenPushed="YES" id="lyh-Hf-a2e" customClass="MessagesViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tse-10-VhV"/>
                         <viewControllerLayoutGuide type="bottom" id="chT-8W-4LQ"/>
@@ -662,11 +669,13 @@
             </objects>
             <point key="canvasLocation" x="1466" y="519"/>
         </scene>
-        <!--Chats-->
+        <!--Navigation Controller-->
         <scene sceneID="TsX-dZ-g7G">
             <objects>
                 <navigationController id="vTy-jS-70H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" id="run-qc-jtc"/>
+                    <tabBarItem key="tabBarItem" title="" image="BubbleIcon" selectedImage="BubbleIconFilled" id="run-qc-jtc">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="LmP-zP-XmV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -681,11 +690,13 @@
             </objects>
             <point key="canvasLocation" x="-582" y="687"/>
         </scene>
-        <!--Setting-->
+        <!--Navigation Controller-->
         <scene sceneID="grT-ag-AfN">
             <objects>
                 <navigationController id="bXu-wa-sxJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" id="01b-n6-MaJ"/>
+                    <tabBarItem key="tabBarItem" title="" image="SettingIcon" selectedImage="SettingIconFilled" id="01b-n6-MaJ">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="0HV-OM-bpe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -703,12 +714,18 @@
         <!--Main Tab Bar View Controller-->
         <scene sceneID="tFq-pl-80g">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarViewController" id="Dq2-fI-gjJ" customClass="MainTabBarViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarViewController" id="Dq2-fI-gjJ" customClass="MainTabBarViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
+                    <keyCommands/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6wm-nf-wIr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedImageTintColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="X4s-yF-dmz" kind="relationship" relationship="viewControllers" id="UOh-2r-QTo"/>
                         <segue destination="vTy-jS-70H" kind="relationship" relationship="viewControllers" id="apr-fj-IcF"/>
@@ -717,12 +734,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sY-Po-CK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1334" y="1614"/>
+            <point key="canvasLocation" x="-1352" y="1638"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="OuI-6x-vaC">
             <objects>
-                <viewController id="cBM-RI-4J3" userLabel="Signup View Controller" customClass="SignupViewController" customModule="linish_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cBM-RI-4J3" userLabel="Signup View Controller" customClass="SignupViewController" customModule="LINISH" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Njb-xk-R3c"/>
                         <viewControllerLayoutGuide type="bottom" id="nHT-PW-Um3"/>
@@ -758,7 +775,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYD-yx-mdy">
                                 <rect key="frame" x="20" y="256" width="374" height="38"/>
-                                <color key="backgroundColor" red="0.14901960784313725" green="0.6588235294117647" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.68627450980392157" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="v86-AR-PmA"/>
                                 </constraints>
@@ -869,10 +886,19 @@
             <point key="canvasLocation" x="1322" y="2597"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BubbleIcon" width="29" height="29"/>
+        <image name="BubbleIconFilled" width="29" height="29"/>
+        <image name="MagnifierIcon" width="29" height="29"/>
+        <image name="SettingIcon" width="29" height="29"/>
+        <image name="SettingIconFilled" width="29" height="29"/>
+        <image name="UserIcon" width="29" height="29"/>
+        <image name="UserIconFilled" width="29" height="29"/>
+    </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="umc-Is-bIP"/>
         <segue reference="7to-ab-5C9"/>
+        <segue reference="4eC-tV-rZU"/>
         <segue reference="vxd-dH-EvM"/>
-        <segue reference="IjC-7t-LzM"/>
-        <segue reference="fPR-u5-DVM"/>
     </inferredMetricsTieBreakers>
 </document>

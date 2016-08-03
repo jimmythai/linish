@@ -27,6 +27,8 @@ class SignoutViewController: UIViewController {
     
     func signoutButtonTapped(sender: UIButton) {
         API.post("/accounts/signout") { response in
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.removeObjectForKey("access_token")
             self.performSegueWithIdentifier("signoutCompletedSegue", sender: sender)
         }
     }

@@ -103,11 +103,13 @@ class API {
     class func post(path: String, parameters: [String: AnyObject] = ["": ""], completion : (JSON) -> ()) {
         var requestParameters:[String: AnyObject] = parameters
         if !(path == "/accounts/signin" || path == "/accounts/signup") {
+            print("access_Token")
             requestParameters["access_token"] = getAccessToken()
         }
-
+        
         Alamofire.request(.POST, API.makeUrl(path), parameters: requestParameters)
             .responseJSON { response in
+                print(response)
                 guard let data = response.result.value else {
                     return
                 }

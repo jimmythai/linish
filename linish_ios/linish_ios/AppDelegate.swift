@@ -17,6 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // first time to launch this app
+        
+        // TODO change this to oposite condition
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.objectForKey("access_token") != nil {
+            API.get("/accounts") { response in
+                if response["code"] != 400 {
+                    if defaults.objectForKey("access_token")?.string == response["access_token"].string {
+                        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                        let nav = storyboard.instantiateViewControllerWithIdentifier("MainTabBarViewController")
+                        
+                        self.window?.rootViewController = nav
+                    }
+                }
+            }
+        }
         return true
     }
 

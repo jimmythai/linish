@@ -42,7 +42,8 @@
                     android:hint="ユーザーID（半角英数25文字以内）"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/linishPrimaryText" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -60,7 +61,8 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@color/linishPrimaryText" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -71,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="ログイン"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/linishPrimaryText" />
 
         </LinearLayout>
 

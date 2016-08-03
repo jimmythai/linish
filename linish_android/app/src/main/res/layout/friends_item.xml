@@ -7,7 +7,10 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -15,7 +18,7 @@
             android:choiceMode="singleChoice"
             android:text="user"
             android:id="@+id/userId"
-            android:textColor="#727272"/>
+            android:textColor="@color/linishPrimaryText"/>
 
     </LinearLayout>
 </LinearLayout>

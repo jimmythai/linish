@@ -177,6 +177,9 @@ module Linish
         errorMessages = relationship.errors.full_messages
         errorMessages = "Already your friend" if errorMessages.instance_of?(Array) && !errorMessages.empty?
         throw_error!(errorMessages, 400, 400) unless errorMessages.empty?
+        ActionCable.server.broadcast 'friends',
+          follower_id: followerId,
+          followed_id: followedId
         relationship
       end
 
@@ -188,16 +191,19 @@ module Linish
       post :delete do
         authenticate!
         userIds = params[:user_ids]
-        userId = @current_user.user_id
-        userIds.push(userId)
+
+        # userIds.push(@current_user.user_id)
         userIds.each do |userId|
           user = Relationship.find_by(follower_id: userId)
-          if user.nil?
-            user = Relationship.find_by(followed_id: userId)
-          end
+          user = Relationship.find_by(followed_id: userId) if user.nil?
           if user.nil?
             throw_error!("can't find friends'", 400, 400)
           else
+            deletedId = user.followed_id unless @current_user.user_id == user.followed_id
+            deletedId = user.follower_id unless @current_user.user_id == user.follower_id
+            ActionCable.server.broadcast 'friends_delete',
+              deleting_id: @current_user.user_id,
+              deleted_id: deletedId
             user.destroy
           end
         end
@@ -312,6 +318,12 @@ module Linish
         authenticate!
         userId = @current_user.user_id
         message = Message.create(message: params[:message], user_id: userId, room_id: params[:room_id])
+
+        ActionCable.server.broadcast 'messages',
+          user_id: userId,
+          message: params[:message],
+          room_id: params[:room_id]
+
         message
       end
 

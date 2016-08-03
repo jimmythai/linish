@@ -5,6 +5,9 @@ package com.example.atsushiyamamoto.linish;
  */
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -26,7 +30,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.hosopy.actioncable.ActionCable;
+import com.hosopy.actioncable.ActionCableException;
+import com.hosopy.actioncable.Channel;
+import com.hosopy.actioncable.Consumer;
+import com.hosopy.actioncable.Subscription;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -38,25 +48,26 @@ import okhttp3.Response;
 public class MessageActivity extends AppCompatActivity {
 
     private EditText msg_edittext;
-    private String user1 = "khushi", user2 = "khushi1";
     private Random random;
     public static ArrayList<ChatMessage> chatlist;
     public static ChatAdapter chatAdapter;
     ListView msgListView;
-    Integer roomId;
+    Integer selectedRoomId;
     Map<String, ArrayList<String>> messages;
     Map<String, String> user;
     Context context;
+    Consumer consumer;
 
     @Override
     public void onCreate(Bundle  savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("onCreate");
         setContentView(R.layout.activity_message);
         context = getBaseContext();
 
         Intent intent = getIntent();
         ArrayList<String> membersArray = intent.getStringArrayListExtra("membersArray");
-        roomId = intent.getIntExtra("roomId", 0);
+        selectedRoomId = intent.getIntExtra("roomId", 0);
 
         if (membersArray != null) {
             String separator = ", ";
@@ -90,6 +101,87 @@ public class MessageActivity extends AppCompatActivity {
 //        Map<String, ArrayList<Object>> messages = new HashMap<String, ArrayList<Object>>();
 //        chatAdapter = new ChatAdapter(MessageActivity.this, messages);
 //        msgListView.setAdapter(chatAdapter);
+
+        try {
+            URI uri = new URI("ws://192.168.100.179:3000/cable");
+            this.consumer = ActionCable.createConsumer(uri);
+            Channel                                                                                                                                                      appearanceChannel = new Channel("MessageChannel");
+            Subscription subscription = consumer.getSubscriptions().create(appearanceChannel);
+
+            subscription
+            .onConnected(new Subscription.ConnectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("YAY!");
+                            // Called when the subscription has been successfully completed
+                }
+            }).onRejected(new Subscription.RejectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("NO WAY!");
+                    // Called when the subscription is rejected by the server
+                }
+            }).onReceived(new Subscription.ReceivedCallback() {
+//                {users=[ayamam1129, ayamam1127], messages=[]}ROOMROOM
+                @Override
+                public void call(final JsonElement data) {
+                    System.out.println("RECEIVED");
+                    runOnUiThread(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          JsonObject gsonData = data.getAsJsonObject();
+                                          String messageBody = gsonData.get("message").getAsString();
+                                          Integer roomId = gsonData.get("room_id").getAsInt();
+                                          String userId = gsonData.get("user_id").getAsString();
+
+                                          Map<String, Object> message = new HashMap<String, Object>();
+                                          message.put("message", messageBody);
+                                          message.put("room_id", roomId);
+                                          message.put("user_id", userId);
+
+                                          System.out.print("START");
+                                          System.out.println(roomId.equals(selectedRoomId));
+                                          System.out.println(roomId);
+                                          System.out.println(selectedRoomId);
+
+                                          if(roomId.equals(selectedRoomId)) {
+                                              msg_edittext.setText("");
+                                              chatAdapter.add(message);
+                                              chatAdapter.notifyDataSetChanged();
+                                          }
+
+                                          System.out.print(data);
+                                      }
+                                  }
+                    );
+                    // Called when the subscription receives data from the server
+                }
+            }).onDisconnected(new Subscription.DisconnectedCallback() {
+                @Override
+                public void call() {
+                    System.out.print("Bye");
+                    // Called when the subscription has been closed
+                }
+            }).onFailed(new Subscription.FailedCallback() {
+                @Override
+                public void call(ActionCableException e) {
+                    System.out.print("OH NO!");
+                    // Called when the subscription encounters any error
+                }
+            });
+
+            consumer.connect();
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        System.out.println("onStop");
+        this.consumer.disconnect();
     }
 
     @Override
@@ -117,7 +209,7 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 try {
-                    getAsync("/rooms/" + roomId +"/messages", context, new Callback() {
+                    getAsync("/rooms/" + selectedRoomId +"/messages", context, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                         }
@@ -132,7 +224,6 @@ public class MessageActivity extends AppCompatActivity {
                                         msgListView.setAdapter(chatAdapter);
                                     }
                                 });
-
 
                             } catch (IOException e) {
                             }
@@ -169,7 +260,7 @@ public class MessageActivity extends AppCompatActivity {
                 @Override
                 protected String doInBackground(Void... params) {
                     try {
-                        postAsync("/rooms/" + roomId + "/messages/add", json, MessageActivity.this, new Callback() {
+                        postAsync("/rooms/" + selectedRoomId + "/messages/add", json, MessageActivity.this, new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
                             }
@@ -180,10 +271,7 @@ public class MessageActivity extends AppCompatActivity {
                                     final Map resMap = makeResponseMap(response);
                                     runOnUiThread(new Runnable() {
                                         public void run() {
-                                            System.out.println(resMap);
-                                            msg_edittext.setText("");
-                                            chatAdapter.add(resMap);
-                                            chatAdapter.notifyDataSetChanged();
+
                                         }
                                     });
                                 } catch (IOException e) {

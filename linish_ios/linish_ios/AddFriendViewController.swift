@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class AddFriendViewController: UIViewController {
+class AddFriendViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var errorMessage: UILabel!
@@ -49,9 +49,11 @@ class AddFriendViewController: UIViewController {
     }
     @IBAction func findFriendChange(sender: UITextField) {
         if self.findFriendTextField.text?.isEmpty ?? true {
-            self.findFriendButton.tintColor = UIColor.blueColor()
+            let magnifierImage = UIImage(named: "MagnifierIcon")
+            self.findFriendButton.setImage(magnifierImage, forState: .Normal)
         } else {
-            self.findFriendButton.tintColor = UIColor.redColor()
+            let magnifierImageGreen = UIImage(named: "MagnifierIconGreen")
+            self.findFriendButton.setImage(magnifierImageGreen, forState: .Normal)
         }
 
         if(!self.userName.hidden) {
@@ -79,7 +81,9 @@ class AddFriendViewController: UIViewController {
         self.userName.hidden = true
         self.addFriendButton.hidden = true
         self.errorMessage.hidden = true
-
+        
+        findFriendTextField.delegate = self
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
         // Do any additional setup after loading the view.
     }
 
@@ -88,16 +92,12 @@ class AddFriendViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func dismissKeyboard() {
+        findFriendTextField.resignFirstResponder()
     }
-    */
-
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        findFriendTextField.resignFirstResponder()
+        return true
+    }
 }

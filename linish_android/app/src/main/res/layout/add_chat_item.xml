@@ -6,22 +6,30 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="user"
-            android:id="@+id/userId" />
+            android:id="@+id/userId"
+            android:textColor="@color/linishPrimaryText"
+            android:gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/chatCheckBox"
             android:layout_gravity="right"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentTop="false"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:checked="false" />
+            android:layout_alignParentEnd="false"
+            android:checked="false"
+            android:layout_centerVertical="true" />
     </RelativeLayout>
 </LinearLayout>

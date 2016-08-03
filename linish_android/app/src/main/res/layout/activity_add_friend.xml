@@ -15,7 +15,9 @@
             android:id="@+id/addFriendButton"
             android:layout_below="@+id/errorText"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="30dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/linishPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,7 +26,8 @@
             android:id="@+id/userId"
             android:layout_marginTop="45dp"
             android:layout_below="@+id/searchFriend"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/linishPrimaryText" />
 
         <SearchView
             android:layout_width="wrap_content"
@@ -47,7 +50,8 @@
             android:id="@+id/errorText"
             android:layout_marginTop="15dp"
             android:layout_below="@+id/userId"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/linishPrimaryText" />
 
 
     </RelativeLayout>

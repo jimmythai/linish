@@ -9,6 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+// TODO: delete
+import Starscream
+import ActionCableClient
 
 class FriendsTableViewController: UITableViewController {
     
@@ -18,14 +21,21 @@ class FriendsTableViewController: UITableViewController {
     }
 
     var friends:[String] = []
+    var client = ActionCableClient(URL: NSURL(string: "ws://192.168.100.179:3000/cable")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         getFriends()
+        getUserAccount()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        client.disconnect()
     }
 
     func getFriends() {
@@ -41,6 +51,99 @@ class FriendsTableViewController: UITableViewController {
         }
         self.friendListTableView.reloadData()
     }
+
+    func getUserAccount() {
+        API.get("/accounts") { response in
+            let userId = response["user_id"].string!
+            self.receiveRealTimeFriends(userId)
+            self.receiveRealTimeDeletingFriends(userId)
+            self.client.connect()
+        }
+    }
+
+    func receiveRealTimeFriends(userId: String) {
+        let friendsChannel = self.client.create("FriendsChannel", identifier: nil, autoSubscribe: true, bufferActions: false)
+
+        friendsChannel.onReceive = { (json : AnyObject?, error : ErrorType?) in
+            let followerId = json!["follower_id"] as! String
+            let followedId = json!["followed_id"] as! String
+
+            if(followedId == userId) {
+                self.friends.append(followerId)
+                self.friends.sortInPlace { $0 < $1 }
+                self.friendListTableView.reloadData()
+            }
+        }
+
+        // A channel has successfully been subscribed to.
+        friendsChannel.onSubscribed = {
+            print("Yay!")
+        }
+        
+        // A channel was unsubscribed, either manually or from a client disconnect.
+        friendsChannel.onUnsubscribed = {
+            print("Unsubscribed")
+        }
+        
+        // The attempt at subscribing to a channel was rejected by the server.
+        friendsChannel.onRejected = {
+            print("Rejected")
+        }
+        
+        client.onConnected = {
+            print("Connected!")
+        }
+        
+        client.onDisconnected = {(error: ErrorType?) in
+            print("Disconnected!")
+        }
+    }
+    
+    
+    func receiveRealTimeDeletingFriends(userId: String) {
+        let friendsDeleteChannel = self.client.create("FriendsDeleteChannel", identifier: nil, autoSubscribe: true, bufferActions: false)
+        
+        friendsDeleteChannel.onReceive = { (json : AnyObject?, error : ErrorType?) in
+            let deletingId = json!["deleting_id"] as! String
+            let deletedId = json!["deleted_id"] as! String
+            print(deletedId)
+            print(userId)
+            print(self.friends)
+            
+            if(deletedId == userId) {
+                if let index = self.friends.indexOf(deletingId) {
+                    self.friends.removeAtIndex(index)
+                    self.friendListTableView.reloadData()
+                }
+            }
+        }
+        
+        // A channel has successfully been subscribed to.
+        friendsDeleteChannel.onSubscribed = {
+            print("Yay!")
+        }
+        
+        // A channel was unsubscribed, either manually or from a client disconnect.
+        friendsDeleteChannel.onUnsubscribed = {
+            print("Unsubscribed")
+        }
+        
+        // The attempt at subscribing to a channel was rejected by the server.
+        friendsDeleteChannel.onRejected = {
+            print("Rejected")
+        }
+        
+        client.onConnected = {
+            print("Connected!")
+        }
+        
+        client.onDisconnected = {(error: ErrorType?) in
+            print("Disconnected!")
+        }
+    }
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,6 +179,8 @@ class FriendsTableViewController: UITableViewController {
             }
         }
     }
+
+    
     // MARK: - Table view data source
 
     /*

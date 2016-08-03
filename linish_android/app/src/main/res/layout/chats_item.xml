@@ -6,7 +6,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -15,7 +18,7 @@
             android:id="@+id/users"
             android:text="@string/users"
             android:layout_marginRight="90dp"
-            android:textColor="#727272" />
+            android:textColor="@color/linishPrimaryText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +29,9 @@
             android:minWidth="160dp"
             android:width="80dp"
             android:gravity="right"
-            android:textColor="#727272" />
+            android:textColor="@color/linishSecodaryText"
+            android:textSize="11dp"
+            android:layout_marginTop="-8dp" />
 
     </RelativeLayout>
 
