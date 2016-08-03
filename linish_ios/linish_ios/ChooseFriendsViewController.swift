@@ -15,6 +15,7 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
     var friends:[String] = []
     var selectedFriends:[String] = []
     var selectedRoom: Int = 0
+    var userId: String = ""
 
     @IBOutlet weak var friendsTableView: UITableView!
 
@@ -36,6 +37,8 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
         if segue.identifier == "showMessagesFromChooseFriends" {
             let nextVC:MessagesViewController = segue.destinationViewController as! MessagesViewController
             nextVC.selectedRoom = self.selectedRoom
+            nextVC.title = self.selectedFriends.joinWithSeparator(",")
+            nextVC.userId = self.userId
             setBackButtonForNextPage()
         }
     }
@@ -113,6 +116,7 @@ class ChooseFriendsViewController: UIViewController, UITableViewDelegate, UITabl
             print(response["room_id"])
             print("FUFEFEUFUEFUE")
             self.selectedRoom = response["room_id"].intValue
+            self.userId = response["user_id"].string!
             self.performSegueWithIdentifier("showMessagesFromChooseFriends", sender: self)
         }
     }

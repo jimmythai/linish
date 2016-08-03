@@ -257,6 +257,7 @@ module Linish
 
         createdRoom["room_id"] = room.room_id
         createdRoom["users"] = users
+        createdRoom["user_id"] = createrId
         createdRoom
       end
 
