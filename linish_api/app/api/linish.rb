@@ -255,6 +255,10 @@ module Linish
           end
         end
 
+        ActionCable.server.broadcast 'room_add',
+          room_ids: room.room_id,
+          users: users
+
         createdRoom["room_id"] = room.room_id
         createdRoom["users"] = users
         createdRoom["user_id"] = createrId
@@ -279,6 +283,9 @@ module Linish
 
             userRooms = UserRoom.where(room_id: roomId)
             if userRooms.length == 0
+              ActionCable.server.broadcast 'room_add',
+                room_id: room.room_id
+
               Room.find_by(room_id: roomId).delete
             end
           else
