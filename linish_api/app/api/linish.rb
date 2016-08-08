@@ -283,7 +283,7 @@ module Linish
 
             userRooms = UserRoom.where(room_id: roomId)
             if userRooms.length == 0
-              ActionCable.server.broadcast 'room_add',
+              ActionCable.server.broadcast 'room_delete',
                 room_id: room.room_id
 
               Room.find_by(room_id: roomId).delete

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import ActionCableClient
 
 class ChatsTableViewController: UITableViewController {
     var rooms = [[String: String?]]()

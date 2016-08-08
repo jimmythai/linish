@@ -86,6 +86,13 @@ public class FragmentTabChats extends ListFragment {
         showRooms();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        showRooms();
+        System.out.println("onResume");
+    }
+
     protected void showRooms() {
         new API() {
             @Override
