@@ -23,7 +23,7 @@ class MessagesViewController: JSQMessagesViewController {
     
     var selectedRoom:Int = 0
     var userId:String = ""
-    var client = ActionCableClient(URL: NSURL(string: "ws://10.199.80.167:3000/cable")!)
+    var client = ActionCableClient(URL: NSURL(string: "ws://192.168.100.103:3000/cable")!)
 //    var firstLayout = true
     
     

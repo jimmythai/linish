@@ -1,0 +1,69 @@
+{
+	"liveValues": [
+		{
+			"range": {
+				"from": {
+					"line": 7,
+					"ch": 16
+				},
+				"to": {
+					"line": 7,
+					"ch": 32
+				}
+			},
+			"editWith": "dropdown",
+			"dropdownOptions": "FontFamily",
+			"type": "string",
+			"name": "FontFamily",
+			"group": "TEXT 3"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 8,
+					"ch": 16
+				},
+				"to": {
+					"line": 8,
+					"ch": 24
+				}
+			},
+			"editWith": "dropdown",
+			"dropdownOptions": "FontWeight",
+			"type": "string",
+			"name": "FontWeight",
+			"group": "TEXT 3"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 9,
+					"ch": 14
+				},
+				"to": {
+					"line": 9,
+					"ch": 16
+				}
+			},
+			"type": "number",
+			"name": "FontSize",
+			"group": "TEXT 3"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 45,
+					"ch": 17
+				},
+				"to": {
+					"line": 45,
+					"ch": 26
+				}
+			},
+			"editWith": "colorPicker",
+			"type": "string",
+			"name": "BorderColor",
+			"group": "TEXT INPUT 2"
+		}
+	]
+}

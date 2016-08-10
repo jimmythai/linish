@@ -1,0 +1,53 @@
+{
+	"liveValues": [
+		{
+			"range": {
+				"from": {
+					"line": 14,
+					"ch": 16
+				},
+				"to": {
+					"line": 14,
+					"ch": 22
+				}
+			},
+			"editWith": "dropdown",
+			"dropdownOptions": "FontWeight",
+			"type": "string",
+			"name": "FontWeight"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 21,
+					"ch": 17
+				},
+				"to": {
+					"line": 21,
+					"ch": 26
+				}
+			},
+			"editWith": "colorPicker",
+			"type": "string",
+			"name": "BorderColor",
+			"group": "TEXT INPUT 2"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 37,
+					"ch": 20
+				},
+				"to": {
+					"line": 37,
+					"ch": 28
+				}
+			},
+			"editWith": "dropdown",
+			"dropdownOptions": "JustifyContent",
+			"type": "string",
+			"name": "JustifyContent",
+			"group": "VIEW 2"
+		}
+	]
+}
