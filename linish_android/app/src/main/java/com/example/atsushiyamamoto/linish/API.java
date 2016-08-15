@@ -37,12 +37,12 @@ public class API extends AsyncTask<Void, Void, String> {
         super();
     }
 
-    final public static String HOSTNAME = "http://192.168.10.4:3000";
+    final public static String HOSTNAME = "http://192.168.100.103:3000";
     final public static String SUB_DIRECTORY = "/api";
     final public static String API_VERSION = "/v1";
     final public static String PREF_NAME = "linish_prefs";
 
-    final public static String ACTIONCABLE_HOSTNAME = "ws://192.168.10.4:3000";
+    final public static String ACTIONCABLE_HOSTNAME = "ws://192.168.100.103:3000";
     final public static String ACTIONCABLE_SUB_DIRECTORY = "/cable";
 
     public static OkHttpClient client = new OkHttpClient();

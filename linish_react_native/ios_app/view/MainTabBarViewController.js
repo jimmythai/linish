@@ -21,6 +21,18 @@ export default class MainTabBarViewController extends Component {
     }
   }
 
+  
+  componentWillReceiveProps(props) {
+    console.log(props);
+    console.log('componentWillReceivePropstab + mtbvc')
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log(nextProps)
+    console.log(nextState)
+    console.log('componentWillUpdatetab + mtbvc')
+  }
+
   render() {
     return (
       <TabBarIOS
@@ -29,7 +41,9 @@ export default class MainTabBarViewController extends Component {
         barTintColor="#F7F7F7">
         <TabBarIOS.Item
           // icon={{uri: base64Icon, scale: 3}}
-          title="friendsTab"
+          // title="friendsTab"
+          icon={require('../../images/Icon-Small-6.png')}
+          selectedIcon={require('../../images/Icon-Small-7.png')}
           selected={this.state.selectedTab === 'friendsTab'}
           onPress={() => {
             this.setState({
@@ -41,12 +55,14 @@ export default class MainTabBarViewController extends Component {
         <TabBarIOS.Item
           // systemIcon="history"
           // badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-          title="chatsTab"
+          // title="chatsTab"
+          icon={require('../../images/Icon-Small-3.png')}
+          selectedIcon={require('../../images/Icon-Small-5.png')}
           selected={this.state.selectedTab === 'chatsTab'}
           onPress={() => {
             this.setState({
               selectedTab: 'chatsTab',
-              notifCount: this.state.notifCount + 1,
+              // notifCount: this.state.notifCount + 1,
             });
           }}>
           {<ChatsViewController />}
@@ -55,7 +71,9 @@ export default class MainTabBarViewController extends Component {
           // icon={require('./flux.png')}
           // selectedIcon={require('./relay.png')}
           renderAsOriginal
-          title="settingTab"
+          // title="settingTab"
+          icon={require('../../images/Icon-Small-29.png')}
+          selectedIcon={require('../../images/Icon-Small-1.png')}
           selected={this.state.selectedTab === 'settingTab'}
           onPress={() => {
             this.setState({

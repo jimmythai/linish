@@ -1,4 +1,5 @@
-import ActionCable from 'actioncable';
+// import { ActionCable } from 'actioncable-js';
+// import ActionCable from 'actioncable';
 import {
   AsyncStorage,
 } from 'react-native';
@@ -107,23 +108,30 @@ export default class Network {
           });
           break;
       }
+
+      const json = await res.json();
+
       if (!res.ok) {
-        await console.warn('ResponseError\nstatus: ' + res.status + ', message: ' + res.statusText, ', json: ' + res.json());
+        await console.warn(
+          'ResponseError\n',
+          {
+            status: res.status,
+            message: res.statusText,
+            responseJson: json,
+          }
+        );
       }
-      return await res;
+
+      return await json;
     } catch(err) {
       console.error(err);
       return await err;
     }
   }
 
-  static connectCable(channel) {
-    const nw = new Network();
+  static connectCable() {
     const url = this.makeUrl('ws');
     const cable = ActionCable.createConsumer(url);
-    
-    cable.subscriptions.create(channel, {
-      // normal channel code goes here...
-    });
+    return cable;
   }
 }

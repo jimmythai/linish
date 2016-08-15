@@ -3,9 +3,9 @@ import {
   Text,
   View,
   StyleSheet,
-  Navigator,
-  NavigatorIOS,
 } from 'react-native';
+
+import {Actions} from 'react-native-router-flux';
 
 import baseStyles from '../style/base';
 import settingStyles from '../style/setting';
@@ -24,8 +24,7 @@ export default class SignoutView extends Component {
       method: 'POST',
     });
 
-    
-    // await this.props.navigator.resetTo({});
+    await Actions.signin();
   }
 
   render() {

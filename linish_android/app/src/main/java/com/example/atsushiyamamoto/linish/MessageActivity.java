@@ -103,7 +103,7 @@ public class MessageActivity extends AppCompatActivity {
 //        msgListView.setAdapter(chatAdapter);
 
         try {
-            URI uri = new URI("ws://192.168.10.4:3000/cable");
+            URI uri = new URI("ws://192.168.100.103:3000/cable");
             this.consumer = ActionCable.createConsumer(uri);
             Channel                                                                                                                                                      appearanceChannel = new Channel("MessageChannel");
             Subscription subscription = consumer.getSubscriptions().create(appearanceChannel);

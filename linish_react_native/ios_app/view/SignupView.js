@@ -4,8 +4,12 @@ import {
   View,
   TextInput,
   Alert,
-  Navigator
+  Navigator,
+  AsyncStorage,
+  TouchableOpacity,
 } from 'react-native';
+
+import {Actions} from 'react-native-router-flux';
 
 import baseStyles from '../style/base';
 import initialView from '../style/initialView';
@@ -30,7 +34,7 @@ export default class SignupView extends Component {
   }
   
   onPressSigninLink() {
-    this.props.navigator.pop();
+    Actions.signin();
   }
   
   async onSubmit(email, userId, password) {
@@ -48,8 +52,7 @@ export default class SignupView extends Component {
         }
       });
 
-      const status = await res.status;
-      if(status && status === 400) {
+      if(res.code === 400) {
         Alert.alert(
           'Duplicate account',
           '入力したユーザー名またはメールアドレスはすでに登録されています',
@@ -59,9 +62,9 @@ export default class SignupView extends Component {
         );
       } else {
         try {
-          const json = await res.json();
-          await AsyncStorage.setItem('access_token', json.access_token);
-          await this.props.navigator.push({index: 2,});
+          await AsyncStorage.setItem('access_token', res.access_token);
+          await Actions.tabbar();
+          // await this.props.navigator.push({index: 2,});
         } catch (err) {
           // Error saving data
         }
@@ -123,13 +126,11 @@ export default class SignupView extends Component {
                 value={(this.state && this.state.password) || ''}
               />
             </View>
-            <Text
-              style={[baseStyles.button, baseStyles.buttonPrimary, initialView.formButton]}
-              onPress={() => {
-                this.onSubmit(this.state.email, this.state.userId, this.state.password);
-              }}>
-              ログイン
-            </Text>
+            <TouchableOpacity onPress={() => this.onSubmit(this.state.email, this.state.userId, this.state.password)}>
+              <Text style={[baseStyles.button, baseStyles.buttonPrimary, initialView.formButton]}>
+                新規登録
+              </Text>
+            </TouchableOpacity>
           </View>
           <View
             style={initialView.signupArea}>

@@ -1,6 +1,7 @@
 package com.linish_react_native;
 
 import com.facebook.react.ReactActivity;
+import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 
 public class MainActivity extends ReactActivity {
 

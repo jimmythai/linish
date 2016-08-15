@@ -19,15 +19,15 @@ export default class Validation {
     }
 
     if (isUserIdEmpty) {
-      errors.push('ユーザーIDを入力してください')
+      errors.push('ユーザーIDを入力してください');
     } else if (isUserIdLong) {
-      errors.push('ユーザーIDは25文字以内で入力してください')
+      errors.push('ユーザーIDは25文字以内で入力してください');
     }
 
     if (isPasswordEmpty) {
-        errors.push('パスワードを入力してください')
+        errors.push('パスワードを入力してください');
     } else if (isPasswordShortLong) {
-        errors.push('パスワードは8文字以上100文字以内で入力してください')
+        errors.push('パスワードは8文字以上100文字以内で入力してください');
     }
 
     return errors;

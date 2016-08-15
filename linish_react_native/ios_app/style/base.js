@@ -56,5 +56,14 @@ export default StyleSheet.create({
   },
   list: {
     
-  }
+  },
+  listItem: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 40,
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
 });

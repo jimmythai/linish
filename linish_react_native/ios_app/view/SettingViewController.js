@@ -9,11 +9,12 @@ export default class SettingViewController extends Component {
         ref='nav'
         initialRoute={{
           component: SettingView,
-          title: 'settingTab',
+          title: '設定',
+          barTintColor: '#283147',
+          titleTextColor: '#FFFFFF',
+          tintColor: '#FFFFFF',
+          translucent: false,
         }}
-        titleTextColor='#FFFFFF'
-        tintColor='#FFFFFF'
-        barTintColor='#283147'
         style={{flex: 1}}
       />
     );

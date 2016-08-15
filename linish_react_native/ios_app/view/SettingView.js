@@ -7,9 +7,12 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+import {Actions} from 'react-native-router-flux';
+
 import Network from './Network';
 import SignoutView from './SignoutView';
-// import SignoutViewController from './SignoutViewController';
+import baseStyle from '../style/base';
+
 import DeleteAccountView from './DeleteAccountView';
 
 export default class SettingView extends Component {
@@ -26,27 +29,27 @@ export default class SettingView extends Component {
     let component;
     switch (rowId) {
       case 0:
-        component = SignoutView;
+        // component = SignoutView;
+        Actions.signout();
         break;
       case 1:
-        component = DeleteAccountView;
+        // component = DeleteAccountView;
+        Actions.deleteAccount();
         break;
     }
-
-    this.props.navigator.push({
-      title: rowData,
-      component: component,
-    });
   }
 
   _renderRow(rowData, sectionID, rowID, highlightRow) {
     return (
       
       <TouchableHighlight
+        underlayColor='#E5E5E5'
         onPress={() => {
           this.onPressRow(rowData, rowID)
         }}>
-        <Text>{rowData}</Text>
+        <View style={baseStyle.listItem}>
+          <Text>{rowData}</Text>
+        </View>
       </TouchableHighlight>
     );
   }

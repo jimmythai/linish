@@ -48,6 +48,8 @@ GEM
     byebug (9.0.5)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+    composite_primary_keys (9.0.1)
+      activerecord (~> 5.0.0)
     concurrent-ruby (1.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -177,6 +179,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   byebug
+  composite_primary_keys
   grape
   hashie-forbidden_attributes
   listen (~> 3.0.5)

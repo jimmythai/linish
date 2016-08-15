@@ -44,3 +44,6 @@ gem 'rspec-rails'
 
 # For secure password
 gem 'bcrypt'
+
+# For multiple keys
+gem 'composite_primary_keys'

@@ -330,8 +330,9 @@ module Linish
         ActionCable.server.broadcast 'messages',
           user_id: userId,
           message: params[:message],
-          room_id: params[:room_id]
-
+          room_id: params[:room_id],
+          created_at: message.created_at,
+          message_id: message.id
         message
       end
 

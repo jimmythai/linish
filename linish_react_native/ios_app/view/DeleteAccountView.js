@@ -3,12 +3,12 @@ import {
   Text,
   View,
   StyleSheet,
-  NavigatorIOS,
 } from 'react-native';
+
+import {Actions} from 'react-native-router-flux';
 
 import baseStyles from '../style/base';
 import settingStyles from '../style/setting';
-import SignupView from './SignupView';
 import Network from './Network';
 
 export default class DeleteAccountView extends Component {
@@ -22,14 +22,13 @@ export default class DeleteAccountView extends Component {
       method: 'POST',
     });
 
-    await this.props.navigator.push({
-      component: SignupView,
-      navigationBarHidden: true,
-    });
+    console.log(res)
+
+    await Actions.signup();
   }
 
   onPressCancelButton() {
-    this.props.navigator.pop(0);
+    Actions.pop();
   }
 
   render() {

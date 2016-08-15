@@ -7,47 +7,43 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
+  TouchableOpacity,
   Text,
-  View
+  Icon,
 } from 'react-native';
 
-class linish_react_native extends Component {
+import {Actions, Scene, Router} from 'react-native-router-flux';
+
+import Signin from './android_app/view/SigninView';
+import Signup from './android_app/view/SignupView';
+import MainTabBar from './android_app/view/MainTabBarViewController';
+import Friends from './android_app/view/FriendsView';
+import Chats from './android_app/view/ChatsView';
+import Setting from './android_app/view/SettingView';
+// import AddFriend from './ios_app/view/AddFriendView';
+// import ChooseFriends from './ios_app/view/ChooseFriendsView';
+// import Room from './ios_app/view/RoomView';
+// import Signout from './ios_app/view/SignoutView';
+// import DeleteAccount from './ios_app/view/DeleteAccountView';
+
+class Linish extends Component {
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
+    return <Router>
+      <Scene key="root" navigationBarStyle={{backgroundColor: '#283147'}} titleStyle={{color: '#FFFFFF', fontWeight: 'bold', textAlign: 'left', paddingLeft: 15}} backButtonTextStyle={{color: '#FFFFFF'}} leftButtonIconStyle={{tintColor: '#FFFFFF'}}>
+        <Scene key="signin" initial={true} title="ログイン" component={Signin} duration={0} type="reset" />
+        <Scene key="signup" hideBackImage={true} title="新規登録" component={Signup} duration={0} type="reset" />
+        <Scene key="tabbar" component={MainTabBar} type="reset">
+          <Scene key="friendsTab" component={Friends}>
+          </Scene>
+          <Scene key="chatsTab" component={Chats}>
+          </Scene>
+          <Scene key="settingTab" component={Setting}>
+          </Scene>
+        </Scene>
+      </Scene>
+    </Router>;
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-AppRegistry.registerComponent('linish_react_native', () => linish_react_native);
+AppRegistry.registerComponent('linish_react_native', () => Linish);
