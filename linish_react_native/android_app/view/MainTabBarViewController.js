@@ -10,9 +10,9 @@ import {Actions, Scene, Router} from 'react-native-router-flux';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 
-import FriendsViewController from './FriendsView';
-import ChatsViewController from './ChatsView';
-import SettingViewController from './SettingView';
+import FriendsView from './FriendsView';
+import ChatsView from './ChatsView';
+import SettingView from './SettingView';
 
 export default class MainTabBarViewController extends Component {
   constructor(props) {
@@ -21,12 +21,14 @@ export default class MainTabBarViewController extends Component {
   render() {
     return (
       <ScrollableTabView
+        tabBarBackgroundColor="#283147"
         tabBarUnderlineColor="#40AE10"
-        tabBarActiveTextColor="#40AE10"
+        tabBarActiveTextColor="#FFFFFF"
+        tabBarInactiveTextColor="#FFFFFF"
       >
-        <FriendsViewController tabLabel="友だち" />
-        <FriendsViewController tabLabel="トーク" />
-        <FriendsViewController tabLabel="設定" />
+        <FriendsView tabLabel="友だち" />
+        <ChatsView tabLabel="トーク" />
+        <SettingView tabLabel="設定" />
       </ScrollableTabView>
     )
   }

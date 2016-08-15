@@ -6,6 +6,7 @@ import {
   Alert,
   AsyncStorage,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
@@ -14,6 +15,7 @@ import baseStyles from '../style/base';
 import initialView from '../style/initialView';
 import Validation from './Validation';
 import Network from './Network';
+import DismissKeyboard from './DismissKeyboard';
 
 export default class SigninView extends Component {
   constructor(props) {
@@ -75,57 +77,63 @@ export default class SigninView extends Component {
       );
     }
   }
-  
+
   render() {
     return (
-      <View style={[baseStyles.wrapper, initialView.wrapper]}>
-          <View>
-            <Text
-              style={[baseStyles.font, initialView.pageTitle]}>
-              ログイン
-            </Text>
-            <View
-              style={initialView.textBoxArea}>
-              <TextInput
-                style={[baseStyles.textBox, initialView.textBox, initialView.textBoxTop]}
-                // TODO: set up validation and behabier
-                placeholder={this.placeholderText.userId}
-                placeholderTextColor={ this.placeholderTextColor }
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={(userId) => {this.setState({userId})}}
-                value={(this.state && this.state.userId) || ''}
-              />
-              <TextInput
-                style={[baseStyles.textBox, initialView.textBox]}
-                // TODO: set up validation and behabier
-                placeholder={this.placeholderText.password}
-                placeholderTextColor={ this.placeholderTextColor }
-                autoCapitalize='none'
-                secureTextEntry={true}
-                onChangeText={(password) => {this.setState({password})}}
-                value={(this.state && this.state.password) || ''}
-              />
-            </View>
-            <TouchableOpacity onPress={() => this.onSubmit(this.state.userId, this.state.password)}>
-              <Text style={[baseStyles.button, baseStyles.buttonPrimary, initialView.formButton]}>
+      <TouchableWithoutFeedback
+        onPress={DismissKeyboard.dismissKeyboard.bind(this, ['userId', 'password'])}
+      >
+        <View style={[baseStyles.wrapper, initialView.wrapper]}>
+            <View>
+              <Text
+                style={[baseStyles.font, initialView.pageTitle]}>
                 ログイン
               </Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={initialView.signupArea}>
-            <Text
-              style={initialView.signupDesc}>
-              新規ではじめる
-            </Text>
-            <Text
-              style={initialView.signupLink}
-              onPress={() => this.onPressSignupLink()}>
-              アカウント作成
-            </Text>
-          </View>
-      </View>
+              <View
+                style={initialView.textBoxArea}>
+                <TextInput
+                  ref='userId'
+                  style={[baseStyles.textBox, initialView.textBox, initialView.textBoxTop]}
+                  // TODO: set up validation and behabier
+                  placeholder={this.placeholderText.userId}
+                  placeholderTextColor={ this.placeholderTextColor }
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={(userId) => {this.setState({userId})}}
+                  value={(this.state && this.state.userId) || ''}
+                />
+                <TextInput
+                  ref='password'
+                  style={[baseStyles.textBox, initialView.textBox]}
+                  // TODO: set up validation and behabier
+                  placeholder={this.placeholderText.password}
+                  placeholderTextColor={ this.placeholderTextColor }
+                  autoCapitalize='none'
+                  secureTextEntry={true}
+                  onChangeText={(password) => {this.setState({password})}}
+                  value={(this.state && this.state.password) || ''}
+                />
+              </View>
+              <TouchableOpacity onPress={() => this.onSubmit(this.state.userId, this.state.password)}>
+                <Text style={[baseStyles.button, baseStyles.buttonPrimary, initialView.formButton]}>
+                  ログイン
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={initialView.signupArea}>
+              <Text
+                style={initialView.signupDesc}>
+                新規ではじめる
+              </Text>
+              <Text
+                style={initialView.signupLink}
+                onPress={() => this.onPressSignupLink()}>
+                アカウント作成
+              </Text>
+            </View>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

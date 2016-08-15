@@ -5,12 +5,14 @@ import {
   StyleSheet,
   TextInput,
   Image,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
 
 import baseStyles from '../style/base';
 import Network from './Network';
+import DismissKeyboard from './DismissKeyboard';
 
 export default class AddFriendView extends Component {
   constructor(props) {
@@ -155,32 +157,37 @@ export default class AddFriendView extends Component {
       );
     } else {
       return (
-        <View style={[baseStyles.wrapper ,baseStyles.wrapperForNavigator, baseStyles.wrapperForTabBarNavigation]}>
-          <View style={[baseStyles.container, selfStyles.searchContainer]}>
-            <View style={selfStyles.searchBoxArea}>
-              <TextInput
-                style={[baseStyles.textBox, selfStyles.searchBox]}
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={(userId) => {this._onChangeText(userId);}}
-                value={(this.state && this.state.userId) || ''}
-              />
-              <Text
-                style={[selfStyles.searchButton, this.state.isSearchActive ? selfStyles.searchActive : selfStyles.searchInActive]}
-                onPress={()=>{
-                  this._onPressSearchButton();
-                }}
-              >
-                <Image source={searchIcon} />
-              </Text>
-            </View>
-            <View style={[selfStyles.outPutContainer]}>
-              {this._renderUserId()}
-              {this._renderErrorText()}
-              {this._renderAddButton()}
+        <TouchableWithoutFeedback
+          onPress={DismissKeyboard.dismissKeyboard.bind(this, ['searchBox'])}
+        >
+          <View style={[baseStyles.wrapper ,baseStyles.wrapperForNavigator, baseStyles.wrapperForTabBarNavigation]}>
+            <View style={[baseStyles.container, selfStyles.searchContainer]}>
+              <View style={selfStyles.searchBoxArea}>
+                <TextInput
+                  ref='searchBox'
+                  style={[baseStyles.textBox, selfStyles.searchBox]}
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={(userId) => {this._onChangeText(userId);}}
+                  value={(this.state && this.state.userId) || ''}
+                />
+                <Text
+                  style={[selfStyles.searchButton, this.state.isSearchActive ? selfStyles.searchActive : selfStyles.searchInActive]}
+                  onPress={()=>{
+                    this._onPressSearchButton();
+                  }}
+                >
+                  <Image source={searchIcon} />
+                </Text>
+              </View>
+              <View style={[selfStyles.outPutContainer]}>
+                {this._renderUserId()}
+                {this._renderErrorText()}
+                {this._renderAddButton()}
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       );
     }
   }

@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
-import {GiftedChat} from 'react-native-gifted-chat';
+import {GiftedChat, Composer} from 'react-native-gifted-chat';
 
 import baseStyles from '../style/base';
 import Validation from './Validation';
@@ -26,6 +26,7 @@ export default class RoomView extends Component {
       },
     };
     this.onSend = this.onSend.bind(this);
+    this.renderComposer = this.renderComposer.bind(this);
 
     this.url = Network.makeUrl('ws');
     this.cable = this.cable || ActionCable.createConsumer(this.url);
@@ -136,9 +137,19 @@ export default class RoomView extends Component {
     });
   }
 
+  renderComposer(props) {
+    return (
+      <Composer
+        {...props}
+        refs = 'textInput'
+      />
+    );
+  }
+
   render() {
     return (
       <GiftedChat
+        renderComposer={this.renderComposer}
         messages={this.state.messages}
         user={this.state.user}
         onSend={this.onSend}

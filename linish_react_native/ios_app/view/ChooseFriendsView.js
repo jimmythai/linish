@@ -113,12 +113,13 @@ export default class ChooseFriendsView extends Component {
     return (
 
       <TouchableHighlight
+        underlayColor='#E5E5E5'
         onPress={() => {
             this._onPress(rowID);
         }}
       >
         <View
-          style={selfStyles.row}
+          style={[baseStyles.listItem, selfStyles.row]}
         >
           <Text>{rowData.userId}</Text>
           <Text style={[selfStyles.checkMark, rowData.selected ? selfStyles.selected : selfStyles.unselected]}>✔︎</Text>
@@ -164,11 +165,12 @@ const selfStyles = StyleSheet.create({
   },
   checkMark: {
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: 10,
+    top: 8,
+    fontSize: 18,
   },
   selected: {
-    color: '#333333',
+    color: '#3B82FD',
   },
   unselected: {
     color: 'transparent',
