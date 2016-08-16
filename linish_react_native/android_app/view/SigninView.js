@@ -37,7 +37,7 @@ export default class SigninView extends Component {
   }
 
   onPressSignupLink() {
-    Actions.signup();
+    this.props.navigator.resetTo({key: 'signup',});
   }
 
   async onSubmit(userId, password) {
@@ -65,7 +65,7 @@ export default class SigninView extends Component {
       } else {
         try {
           await AsyncStorage.setItem('access_token', res.access_token);
-          await Actions.tabbar();
+          await this.props.navigator.resetTo({key: 'maintabbar',});
           // await this.props.navigator.push({index: 2,});
         } catch (err) {
           // Error saving data

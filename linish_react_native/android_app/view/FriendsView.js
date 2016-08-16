@@ -21,6 +21,7 @@ export default class FriendsView extends Component {
     };
 
     this.setDataSource(ds);
+    console.log(props)
   }
 
   componentWillReceiveProps(props) {
@@ -28,6 +29,7 @@ export default class FriendsView extends Component {
   }
 
   componentWillUpdate() {
+    console.log(this.refs)
     console.log('componentWillUpdate')
   }
 
