@@ -3,7 +3,7 @@ import {
   Text,
   View,
   ListView,
-  NavigatorIOS,
+  Navigator,
   TouchableHighlight,
 } from 'react-native';
 
@@ -29,12 +29,10 @@ export default class SettingView extends Component {
     let component;
     switch (rowId) {
       case 0:
-        // component = SignoutView;
-        Actions.signout();
+        this.props.navigator.push({key: 'signout',});
         break;
       case 1:
-        // component = DeleteAccountView;
-        Actions.deleteAccount();
+        this.props.navigator.push({key: 'deleteAccount',});
         break;
     }
   }

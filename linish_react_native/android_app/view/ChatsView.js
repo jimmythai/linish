@@ -54,8 +54,7 @@ export default class ChatsView extends Component {
     });
 
     const userId = await me.user_id;
-
-    await Actions.room({title: userIds, roomId: roomId, userId: userId});
+    await this.props.navigator.push({key: 'room', title: userIds, roomId: roomId, userId: userId, });
   }
 
   _renderRow(rowData, sectionID, rowID, highlightRow) {

@@ -15,7 +15,7 @@ import baseStyles from '../style/base';
 import initialView from '../style/initialView';
 import Validation from './Validation';
 import Network from './Network';
-import Components from './Components';
+import TextField from './TextField';
 
 export default class SignupView extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class SignupView extends Component {
         }
       });
 
-      if(res.code === 400) {
+      if(await res.code === 400) {
         Alert.alert(
           'Duplicate account',
           '入力したユーザー名またはメールアドレスはすでに登録されています',
@@ -88,7 +88,8 @@ export default class SignupView extends Component {
         <View
           style={initialView.textBoxArea}
         >
-          <Textfield
+          <TextField
+            hasFloating={true}
             placeholder={this.placeholderText.email}
             autoCapitalize='none'
             keyboardType='email-address'
@@ -97,7 +98,8 @@ export default class SignupView extends Component {
             onSubmitEditing={() => {this.setState({email: ''})}}
             value={(this.state && this.state.email) || ''}
           />
-          <Textfield
+          <TextField
+            hasFloating={true}
             placeholder={this.placeholderText.userId}
             autoCapitalize='none'
             autoCorrect={false}
@@ -105,7 +107,8 @@ export default class SignupView extends Component {
             onSubmitEditing={() => {this.setState({userId: ''})}}
             value={(this.state && this.state.userId) || ''}
           />
-          <Textfield
+          <TextField
+            hasFloating={true}
             placeholder={this.placeholderText.password}
             autoCapitalize='none'
             secureTextEntry={true}
@@ -136,5 +139,3 @@ export default class SignupView extends Component {
     );
   }
 }
-
-const Textfield = Components.Textfield();

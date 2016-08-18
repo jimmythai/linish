@@ -10,10 +10,13 @@ import {Actions} from 'react-native-router-flux';
 import baseStyles from '../style/base';
 import settingStyles from '../style/setting';
 import Network from './Network';
+import HeaderView from './HeaderView';
+import BackHandler from './BackHandler';
 
 export default class DeleteAccountView extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    BackHandler.popToPrevious(props.navigator);
   }
 
   async onPressDeleteButton() {
@@ -24,28 +27,37 @@ export default class DeleteAccountView extends Component {
 
     console.log(res)
 
-    await Actions.signup();
+    await this.props.navigator.resetTo({key: 'signup',});
   }
 
   onPressCancelButton() {
-    Actions.pop();
+    this.props.navigator.pop();
   }
 
   render() {
     return (
-      <View style={[baseStyles.wrapper ,baseStyles.wrapperForNavigator, baseStyles.wrapperForTabBarNavigation]}>
-        <View style={[baseStyles.container, settingStyles.confirmationContainer]}>
+      <View>
+        <HeaderView
+          title="退会"
+        />
+        <View style={selfStyles.wrapper}>
+          <View style={[baseStyles.container, settingStyles.confirmationContainer]}>
             <Text style={settingStyles.confirmationText}>アカウントを削除しますか？</Text>
-        </View>
-        <View style={[baseStyles.container, settingStyles.buttonsContainer, selfStyles.buttonsContainer]}>
+          </View>
+          <View style={[baseStyles.container, settingStyles.buttonsContainer, selfStyles.buttonsContainer]}>
             <Text
-            style={[baseStyles.button, baseStyles.buttonDanger, selfStyles.button, selfStyles.buttonTop]}
-            onPress={() => this.onPressDeleteButton()}
-            >退会する</Text>
+              style={[baseStyles.button, baseStyles.buttonDanger, selfStyles.button, selfStyles.buttonTop]}
+              onPress={() => this.onPressDeleteButton()}
+            >
+              退会する
+            </Text>
             <Text
-            style={[baseStyles.button, baseStyles.buttonNegative, selfStyles.button]}
-            onPress={() => this.onPressCancelButton()}
-            >キャンセル</Text>
+              style={[baseStyles.button, baseStyles.buttonNegative, selfStyles.button]}
+              onPress={() => this.onPressCancelButton()}
+            >
+              キャンセル
+            </Text>
+          </View>
         </View>
       </View>
     );

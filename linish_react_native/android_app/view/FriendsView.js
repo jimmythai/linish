@@ -14,23 +14,12 @@ import Network from './Network';
 export default class FriendsView extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(['r1', 'r2']),
     };
 
     this.setDataSource(ds);
-    console.log(props)
-  }
-
-  componentWillReceiveProps(props) {
-    console.log(props);
-  }
-
-  componentWillUpdate() {
-    console.log(this.refs)
-    console.log('componentWillUpdate')
   }
 
   async setDataSource(ds) {

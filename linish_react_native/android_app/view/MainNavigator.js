@@ -4,48 +4,79 @@ import {
   Text,
   TouchableHighlight,
   StyleSheet,
+  StatusBar,
+  View,
 } from 'react-native';
 
 import SigninView from './SigninView';
 import SignupView from './SignupView';
+import SignoutView from './SignoutView';
+import ChooseFriendsView from './ChooseFriendsView';
+import AddFriendView from './AddFriendView';
+import RoomView from './RoomView';
+import DeleteAccountView from './DeleteAccountView';
 import MainTabBar from './MainTabBarViewController';
 
 export default class MainNavigator extends Component {
     constructor(props) {
         super(props);
-        console.log(props.navigator)
     }
 
   _renderScene(route, navigator) {
-    let view;
+    let pageView;
     switch (route.key) {
       case 'signin':
-        view = <SigninView navigator={navigator} />
+        pageView = <SigninView navigator={navigator} />
         break;
       case 'signup':
-        view = <SignupView navigator={navigator} />
+        pageView = <SignupView navigator={navigator} />
         break;
       case 'maintabbar':
-        view = <MainTabBar navigator={navigator} />
+        pageView = <MainTabBar navigator={navigator} />
+        break;
+      case 'signout':
+        pageView = <SignoutView navigator={navigator} />
+        break;
+      case 'deleteAccount':
+        pageView = <DeleteAccountView navigator={navigator} />
+        break;
+      case 'room':
+        pageView = <RoomView navigator={navigator} />
+        break;
+      case 'chooseFriends':
+        pageView = <ChooseFriendsView navigator={navigator} />
+        break;
+      case 'addFriend':
+        pageView = <AddFriendView navigator={navigator} />
+        break;
+      default:
         break;
     }
+
+    let view = <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+                 <StatusBar
+                   backgroundColor="#283147"
+                 />
+                 {pageView}
+               </View>;
+
     return view;
   }
 
   // TODO: make this no animation
   // https://github.com/facebook/react-native/issues/1953
   _configureScene(route, navigator) {
-    let animation;
-    switch (route.parent) {
-      case 'initialRoute':
-        animation = Navigator.SceneConfigs.FloatFromBottomAndroid;
-        break;
-      case 'tabbarRoute':
-        animation = Navigator.SceneConfigs.FloatFromBottomAndroid;
-        break;
-      default:
-        break;
-    }
+    // let animation;
+    // switch (route.parent) {
+    //   case 'initialRoute':
+    //     animation = Navigator.SceneConfigs.FloatFromBottomAndroid;
+    //     break;
+    //   case 'tabbarRoute':
+    //     animation = Navigator.SceneConfigs.FloatFromBottomAndroid;
+    //     break;
+    //   default:
+    //     break;
+    // }
     return Navigator.SceneConfigs.FloatFromBottomAndroid;
   }
 
@@ -61,6 +92,22 @@ export default class MainNavigator extends Component {
         break;
       case 'maintabbar':
         title = <Text style={[selfStyle.title, ]}>友だち</Text>
+        break;
+      case 'signout':
+        title = <Text style={[selfStyle.title, ]}>ログアウト</Text>
+        break;
+      case 'deleteAccount':
+        view = <Text style={[selfStyle.title, ]}>退会</Text>
+        break;
+      case 'room':
+        // TODO: pass title dinamically
+        view = <Text style={[selfStyle.title, ]}>トーク</Text>
+        break;
+      case 'chooseFriends':
+        view = <Text style={[selfStyle.title, ]}>友だちを選択</Text>
+        break;
+      case 'addFriend':
+        view = <Text style={[selfStyle.title, ]}>ID検索</Text>
         break;
       default:
         break;
@@ -82,10 +129,25 @@ export default class MainNavigator extends Component {
       case 'maintabbar':
         leftButton = <Text style={selfStyle.leftButton}>友だち</Text>
         break;
+      case 'signout':
+        leftButton = <Text style={selfStyle.leftButton}>ログアウト</Text>
+        break;
+      case 'deleteAccount':
+        leftButton = <Text style={selfStyle.leftButton}>退会</Text>
+        break;
+      case 'room':
+        // TODO: pass title dinamically
+        view = <Text style={[selfStyle.leftButton, ]}>トーク</Text>
+        break;
+      case 'chooseFriends':
+        view = <Text style={[selfStyle.leftButton, ]}>友だちを選択</Text>
+        break;
+      case 'addFriend':
+        view = <Text style={[selfStyle.leftButton, ]}>ID検索</Text>
+        break;
       default:
         break;
     }
-
     return (leftButton);
   }
 
@@ -100,22 +162,30 @@ export default class MainNavigator extends Component {
         rightButton = null;
         break;
       case 'maintabbar':
-        rightButton = <TouchableHighlight
-                        onPress={() => navigator.push({key: 'addFriend', parent: 'friendsTab'})}>
-                        <Text
-                          style={selfStyle.rightButton}
-                        >Add</Text>
-                      </TouchableHighlight>;
+        rightButton = null;
+        break;
+      case 'signout':
+        rightButton = null;
+        break;
+      case 'deleteAccount':
+        leftButton = null;
+        break;
+      case 'room':
+        leftButton = null;
+        break;
+      case 'chooseFriends':
+        leftButton = null;
+        break;
+      case 'addFriend':
+        leftButton = null;
         break;
       default:
         break;
     }
-
     return (rightButton);
   }
 
   navigationBarStyle(route) {
-    console.log(route)
     if(route.key === 'maintabbar') {
       return selfStyle.navigationBar
     } else {
@@ -125,21 +195,21 @@ export default class MainNavigator extends Component {
 
   render() {
     return (
-      <Navigator
-        initialRoute={{key: 'signin', parent: 'initialRoute',}}
-        renderScene={this._renderScene}
-        navigationBar={
-          <NavigationBar
-            ref='initialNav'
-            routeMapper={{
-              LeftButton: (route, navigator, index, navState) => this.renderNavigatorLeftButton(route, navigator, index, navState),
-              RightButton: (route, navigator, index, navState) => this.renderNavigatorRightButton(route, navigator, index, navState),
-              Title: (route, navigator, index, navState) => this.renderNavigatorTitle(route, navigator, index, navState),
-            }}
-            style={[selfStyle.navigationBar, selfStyle.navigationBarWithTabbar]}
-          />
-        }
-        configureScene={this._configureScene} />
+        <Navigator
+          initialRoute={{key: 'signin', parent: 'initialRoute',}}
+          renderScene={this._renderScene}
+          navigationBar={
+            <NavigationBar
+              ref='initialNav'
+              routeMapper={{
+                LeftButton: (route, navigator, index, navState) => this.renderNavigatorLeftButton(route, navigator, index, navState),
+                RightButton: (route, navigator, index, navState) => this.renderNavigatorRightButton(route, navigator, index, navState),
+                Title: (route, navigator, index, navState) => this.renderNavigatorTitle(route, navigator, index, navState),
+              }}
+              style={[selfStyle.navigationBar, selfStyle.navigationBarWithTabbar]}
+            />
+          }
+          configureScene={this._configureScene} />
     );
   }
 }
@@ -178,11 +248,9 @@ const selfStyle = StyleSheet.create({
 class NavigationBar extends Navigator.NavigationBar {
   constructor(props) {
     super(props)
-    console.log(props)
   }
   render() {
     var routes = this.props.navState.routeStack;
-    console.log(routes)
 
     if (routes[0].key === 'maintabbar') {
       return null;

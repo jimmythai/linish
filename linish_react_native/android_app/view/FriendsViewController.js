@@ -12,7 +12,6 @@ import ChatsView from './View';
 export default class FriendsViewController extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
     }
 
   _renderScene(route, navigator) {
@@ -29,11 +28,6 @@ export default class FriendsViewController extends Component {
         break;
     }
     return view;
-  }
-
-  componentWillUpdate() {
-    console.log(this.props)
-    console.log('hoge')
   }
 
   // TODO: make this no animation

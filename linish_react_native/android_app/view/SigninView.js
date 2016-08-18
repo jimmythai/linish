@@ -7,11 +7,7 @@ import {
   AsyncStorage,
   TouchableOpacity,
   StyleSheet,
-} from 'react-native';
-
-import {
-  MKTextField,
-} from 'react-native-material-kit';
+} from 'react-native'
 
 import {Actions} from 'react-native-router-flux';
 
@@ -19,7 +15,7 @@ import baseStyles from '../style/base';
 import initialView from '../style/initialView';
 import Validation from './Validation';
 import Network from './Network';
-import Components from './Components';
+import TextField from './TextField';
 
 export default class SigninView extends Component {
   constructor(props) {
@@ -53,8 +49,8 @@ export default class SigninView extends Component {
           password: password,
         }
       });
-
-      if(res.code === 400) {
+console.log(await res)
+      if(await res.code === 400) {
         Alert.alert(
           'Login Failure',
           'ユーザーIDまたはパスワードが違います',
@@ -88,7 +84,8 @@ export default class SigninView extends Component {
           <View>
             <View
               style={initialView.textBoxArea}>
-              <Textfield
+              <TextField
+                hasFloating={true}
                 placeholder={this.placeholderText.userId}
                 autoCapitalize='none'
                 autoCorrect={false}
@@ -96,7 +93,8 @@ export default class SigninView extends Component {
                 onSubmitEditing={() => {this.setState({userId: ''})}}
                 value={(this.state && this.state.userId) || ''}
               />
-              <Textfield
+              <TextField
+                hasFloating={true}
                 placeholder={this.placeholderText.password}
                 secureTextEntry={true}
                 onChangeText={(password) => {this.setState({password})}}
@@ -125,5 +123,3 @@ export default class SigninView extends Component {
     );
   }
 }
-
-const Textfield = Components.Textfield();
