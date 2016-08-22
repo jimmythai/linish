@@ -31,7 +31,7 @@ export default class ChatsView extends Component {
       method: 'GET',
     });
 
-    let rows = res.map(function(obj) {
+    let rows = await res.map(function(obj) {
       let users = obj.user_ids;
       let usersString = users.join(',');
 
@@ -42,7 +42,7 @@ export default class ChatsView extends Component {
       return {user_ids, updated_at, roomId} = {user_ids: usersString, updated_at: formattedDate, roomId: obj.room_id};
     });
 
-    this.setState({
+    await this.setState({
       dataSource: ds.cloneWithRows(rows),
     });
   }

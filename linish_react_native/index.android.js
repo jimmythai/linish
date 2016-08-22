@@ -25,4 +25,3 @@ import DeleteAccount from './android_app/view/DeleteAccountView';
 import MainNavigator from './android_app/view/MainNavigator';
 
 AppRegistry.registerComponent('linish_react_native', () => MainNavigator);
-

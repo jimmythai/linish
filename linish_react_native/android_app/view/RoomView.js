@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import {
-  Text,
   View,
-  TextInput,
   StyleSheet,
   InteractionManager,
 } from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
 import {GiftedChat, Composer, Bubble, MessageText, Time, Day} from 'react-native-gifted-chat';
 
-import baseStyles from '../style/base';
+import ActionCable from 'react-native-actioncable';
+
 import Validation from './Validation';
 import Network from './Network';
-import ActionCable from 'react-native-actioncable';
 import BackHandler from './BackHandler';
 import HeaderView from './HeaderView';
 
-// import ActionCable from 'actioncable';
-export default class RoomView extends Component {
+export default class Room extends Component {
   constructor(props) {
     super(props);
 
@@ -36,8 +32,6 @@ export default class RoomView extends Component {
   }
 
   componentDidMount() {
-    const that = this;
-
     InteractionManager.runAfterInteractions(() => {
       this.setState({
         renderPlaceholderOnly: false,
@@ -53,6 +47,7 @@ export default class RoomView extends Component {
   }
 
   subscribeMessageChannel() {
+    const that = this;
     this.url = Network.makeUrl('ws');
     this.cable = this.cable || ActionCable.createConsumer(this.url);
 
@@ -85,45 +80,38 @@ export default class RoomView extends Component {
     });
   }
 
-  makeMessages() {
-    (async() => {
-      const res = await Network._fetch({
-        path: '/rooms/' + this.route.roomId + '/messages',
-        method: 'GET',
-      });
+  async makeMessages() {
+    const res = await Network._fetch({
+      path: '/rooms/' + this.route.roomId + '/messages',
+      method: 'GET',
+    });
 
-      const messages = res.messages.map(function(obj) {
-        return {
-            _id: obj.message_id,
-            text: obj.message,
-            createdAt: new Date(obj.created_at),
-            user: {
-              _id: obj.user_id,
-              name: obj.user_id,
-              avatar: 'https://facebook.github.io/react/img/logo_og.png',
-            }
+    const messages = await res.messages.map(function(obj) {
+      const createdAt = new Date(obj.created_at);
+      return {
+          _id: obj.message_id,
+          text: obj.message,
+          createdAt: createdAt,
+          user: {
+            _id: obj.user_id,
+            name: obj.user_id,
+            avatar: 'https://facebook.github.io/react/img/logo_og.png',
           }
-      }).reverse();
+        }
+    }).reverse();
 
-      this.setState({
-        messages: messages,
-      });
-    })().catch(err => {
-      console.log(err);
+    await this.setState({
+      messages: messages,
     });
   }
 
-  onSend(messages = []) {
-    (async() => {
-      const res = await Network._fetch({
-        path: '/rooms/' + this.route.roomId + '/messages/add',
-        method: 'POST',
-        body: {
-          message: messages[0].text,
-        }
-      });
-    })().catch(err => {
-      console.log(err);
+  async onSend(messages = []) {
+    const res = await Network._fetch({
+      path: '/rooms/' + this.route.roomId + '/messages/add',
+      method: 'POST',
+      body: {
+        message: messages[0].text,
+      }
     });
   }
 
@@ -141,12 +129,8 @@ export default class RoomView extends Component {
       <Bubble
         {...props}
         wrapperStyle={{
-          left: {
-            backgroundColor: '#F0F0F0',
-          },
-          right: {
-            backgroundColor: '#87E64A',
-          }
+          left: selfStyles.leftBubble,
+          right: selfStyles.rightBubble,
         }}
       />
     );
@@ -157,14 +141,8 @@ export default class RoomView extends Component {
       <MessageText
         {...props}
         textStyle={{
-          left: {
-            fontSize: 15,
-            color: '#333333',
-          },
-          right: {
-            fontSize: 15,
-            color: '#333333',
-          }
+          left: selfStyles.messageText,
+          right: selfStyles.messageText,
         }}
       />
     );
@@ -174,18 +152,8 @@ export default class RoomView extends Component {
     return (
       <Day
         {...props}
-        wrapperStyle={{
-          backgroundColor: 'rgba(0, 0, 0, 0.26)',
-          paddingTop: 3,
-          paddingBottom: 4,
-          paddingHorizontal: 8,
-          borderRadius: 12,
-        }}
-        textStyle={{
-          fontSize: 11,
-          fontWeight: 'normal',
-          color: '#F0F0F0'
-        }}
+        wrapperStyle={selfStyles.dayWrapper}
+        textStyle={selfStyles.dayText}
       />
     );
   }
@@ -195,14 +163,8 @@ export default class RoomView extends Component {
       <Time
         {...props}
         textStyle={{
-          left: {
-            fontSize: 10,
-            color: '#333333',
-          },
-          right: {
-            fontSize: 10,
-            color: '#333333',
-          }
+          left: selfStyles.timeText,
+          right: selfStyles.timeText,
         }}
       />
     );
@@ -210,7 +172,7 @@ export default class RoomView extends Component {
 
   _renderPlaceholderView() {
     return (
-      <View style={{flex: 1, justifyContent: 'flex-end', backgroundColor: '#7292C1'}}></View>
+      <View style={selfStyles.wrapper}></View>
     );
   }
 
@@ -220,7 +182,7 @@ export default class RoomView extends Component {
     }
 
     return (
-      <View style={{flex: 1, justifyContent: 'flex-end', backgroundColor: '#7292C1'}}>
+      <View style={selfStyles.wrapper}>
         <HeaderView
           title={this.route.title}
           rightButtonVisible={false}
@@ -241,10 +203,35 @@ export default class RoomView extends Component {
 }
 
 const selfStyles = StyleSheet.create({
-  bubbleLeft: {
-
+  wrapper: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: '#7292C1',
   },
-  bubbleRight: {
-    
-  }
+  timeText: {
+    fontSize: 10,
+    color: '#333333',
+  },
+  dayWrapper: {
+    backgroundColor: 'rgba(0, 0, 0, 0.26)',
+    paddingTop: 3,
+    paddingBottom: 4,
+    paddingHorizontal: 8,
+    borderRadius: 12,
+  },
+  dayText: {
+    fontSize: 11,
+    fontWeight: 'normal',
+    color: '#F0F0F0',
+  },
+  messageText: {
+    fontSize: 15,
+    color: '#333333',
+  },
+  leftBubble: {
+    backgroundColor: '#F0F0F0',
+  },
+  rightBubble: {
+    backgroundColor: '#87E64A',
+  },
 });

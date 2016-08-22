@@ -5,12 +5,10 @@ export default class DismissKeyboard extends Component {
     super(props);
   }
 
-  static dismissKeyboard(refs = [], childRef = 'textField') {
+  static dismissKeyboard(refs = [], childRef = 'textField', context = this) {
     for(ref of refs) {
-      console.log('dismissed1')
-      let textInput = this.refs[ref].refs[childRef];
+      let textInput = context.refs[ref].refs[childRef];
       if(textInput.isFocused()) {
-        console.log('dismissed2')
         textInput.blur();
       }
     }

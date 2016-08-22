@@ -11,10 +11,11 @@ import {
 
 import {Actions, Scene, Router} from 'react-native-router-flux';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import FriendsView from './FriendsView';
-import ChatsView from './ChatsView';
+import Chats from './Chats';
 import SettingView from './SettingView';
 
 export default class MainTabBarViewController extends Component {
@@ -23,7 +24,7 @@ export default class MainTabBarViewController extends Component {
 
     this.state = {
       title: '友だち',
-      leftButton: 'Add',
+      leftButton: <MaterialIcons name='group-add' size={36} color='#FFFFFF' />,
       tabname: 'friends',
     }
   }
@@ -72,14 +73,14 @@ export default class MainTabBarViewController extends Component {
               case 'friends':
                 this.setState({
                   title: '友だち',
-                  leftButton: 'Add',
+                  leftButton: <MaterialIcons name='group-add' size={36} color='#FFFFFF' />,
                   tabname: 'friends',
                 });
                 break;
               case 'chats':
                 this.setState({
                   title: 'トーク',
-                  leftButton: 'Add',
+                  leftButton: <MaterialIcons name='edit' size={29} color='#FFFFFF' />,
                   tabname: 'chats',
                 });
                 break;

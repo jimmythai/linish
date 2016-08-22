@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Navigator,
   Text,
-  TouchableHighlight,
   StyleSheet,
   StatusBar,
   View,
@@ -12,8 +11,8 @@ import SigninView from './SigninView';
 import SignupView from './SignupView';
 import SignoutView from './SignoutView';
 import ChooseFriendsView from './ChooseFriendsView';
-import AddFriendView from './AddFriendView';
-import RoomView from './RoomView';
+import AddFriend from './addFriend/AddFriend';
+import Room from './room/Room';
 import DeleteAccountView from './DeleteAccountView';
 import MainTabBar from './MainTabBarViewController';
 
@@ -41,13 +40,13 @@ export default class MainNavigator extends Component {
         pageView = <DeleteAccountView navigator={navigator} />
         break;
       case 'room':
-        pageView = <RoomView navigator={navigator} />
+        pageView = <Room navigator={navigator} />
         break;
       case 'chooseFriends':
         pageView = <ChooseFriendsView navigator={navigator} />
         break;
       case 'addFriend':
-        pageView = <AddFriendView navigator={navigator} />
+        pageView = <AddFriend navigator={navigator} />
         break;
       default:
         break;

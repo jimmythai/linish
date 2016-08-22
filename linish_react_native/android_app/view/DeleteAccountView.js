@@ -25,8 +25,6 @@ export default class DeleteAccountView extends Component {
       method: 'POST',
     });
 
-    console.log(res)
-
     await this.props.navigator.resetTo({key: 'signup',});
   }
 

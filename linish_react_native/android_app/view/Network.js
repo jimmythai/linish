@@ -6,26 +6,26 @@ import {
 
 export default class Network {
   constructor() {
-    this.HTTP_PROTOCOL = 'http:';
-    this.WEBSOCKET_PROTOCOL = 'ws:';
-    this.HOST = '//192.168.100.103:3000';
-    this.API_DIRECTORY = '/api';
-    this.API_VERSION = '/v1';
-    this.WEBSOCKET_DIRECTORY = '/cable';
   }
-  
+
   static makeUrl(protocol, path) {
-    const nw = new Network();
+    const HTTP_PROTOCOL = 'http:';
+    const WEBSOCKET_PROTOCOL = 'ws:';
+    const HOST = '//192.168.100.103:3000';
+    const API_DIRECTORY = '/api';
+    const API_VERSION = '/v1';
+    const WEBSOCKET_DIRECTORY = '/cable';
     let url;
 
     switch(protocol) {
       case 'http':
-        url = nw.HTTP_PROTOCOL + nw.HOST + nw.API_DIRECTORY + nw.API_VERSION + path;
+        url = HTTP_PROTOCOL + HOST + API_DIRECTORY + API_VERSION + path;
         break;
       case 'ws':
-        url = nw.WEBSOCKET_PROTOCOL + nw.HOST + nw.WEBSOCKET_DIRECTORY;
+        url = WEBSOCKET_PROTOCOL + HOST + WEBSOCKET_DIRECTORY;
         break;
     }
+
     return url;
   }
 
@@ -40,9 +40,74 @@ export default class Network {
     } catch(err) {
       return '';
     }
+  
+}
+  static async getData(path = '') {
+    let url = this.makeUrl('http', path);
+    console.log(url)
+    const hasAccessToken = !(path === '/accounts/signup' || path === '/accounts/signin');
+
+    if(hasAccessToken) {
+      const accessToken = this.getAccessToken();
+      url = url + '?access_token=' + accessToken;
+    }
+
+    console.log(url)
+
+    return fetch(url).then(function(res) {
+      const json = res.json();
+      if (!res.ok) {
+        console.warn(
+          'ResponseError\n',
+          {
+            status: res.status,
+            message: res.statusText,
+            responseJson: json,
+          }
+        );
+      }
+      return json;
+    }); 
   }
 
-  static async _fetch({path = '', method = 'GET', body = {}} = {}) {
+
+
+  static postData({path = '', body = {}} = {}) {
+    let url = this.makeUrl('http', path);
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+    const hasAccessToken = !(path === '/accounts/signup' || path === '/accounts/signin');
+
+    if(hasAccessToken) {
+      const accessToken = this.getAccessToken();
+      body.access_token = accessToken;
+    }
+
+    console.log(url)
+
+    return fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(body)
+    }).then(function(res) {
+      const json = res.json();
+      if (!res.ok) {
+        console.warn(
+          'ResponseError\n',
+          {
+            status: res.status,
+            message: res.statusText,
+            responseJson: json,
+          }
+        );
+      }
+      return json;
+    });
+  }
+
+  static _fetch({path = '', method = 'GET', body = {}} = {}) {
     let url = this.makeUrl('http', path);
     const headers = {
       'Accept': 'application/json',
@@ -87,6 +152,7 @@ export default class Network {
             }
           );
         }
+        console.log(await json)
         return await json;
       } catch(err) {
         return await err;

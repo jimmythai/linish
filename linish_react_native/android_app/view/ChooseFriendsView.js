@@ -36,23 +36,16 @@ export default class ChooseFriendsView extends Component {
   }
 
   async componentWillMount() {
-    // LayoutAnimation.configureNext({
-    //   duration: 100000,
-    // })
-    // LayoutAnimation.easeInEaseOut();
-
     const res = await Network._fetch({
       path: '/friends',
       method: 'GET',
     });
 
-     console.log(this.refs)
-
     const rowsData = await res.map(function(userId) {
-        let rowData = {};
-        rowData.userId = userId;
-        rowData.selected = false;
-        return rowData;
+      let rowData = {};
+      rowData.userId = userId;
+      rowData.selected = false;
+      return rowData;
     });
 
     await this.setDataSource(rowsData);
@@ -81,11 +74,10 @@ export default class ChooseFriendsView extends Component {
       method: 'GET',
     });
 
-    const title = await users.join(',');
+    const title = users.join(',');
     const roomId = await res.room_id;
     const userId = await me.user_id
-    console.log(this.props.navigator)
-    this.props.navigator.push({key: 'room', title: title, roomId: roomId, userId: userId});
+    await this.props.navigator.push({key: 'room', title: title, roomId: roomId, userId: userId});
   }
 
   shouldReturnSelectedRows() {

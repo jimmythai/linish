@@ -20,6 +20,7 @@ import TextField from './TextField';
 export default class SigninView extends Component {
   constructor(props) {
     super(props);
+    console.log('hogegheo');
     // TODO: Make this a common component
     this.placeholderTextColor = '#7E7E7E';
     this.placeholderText = {
@@ -49,7 +50,7 @@ export default class SigninView extends Component {
           password: password,
         }
       });
-console.log(await res)
+
       if(await res.code === 400) {
         Alert.alert(
           'Login Failure',
@@ -59,13 +60,15 @@ console.log(await res)
           ]
         );
       } else {
-        try {
-          await AsyncStorage.setItem('access_token', res.access_token);
-          await this.props.navigator.resetTo({key: 'maintabbar',});
-          // await this.props.navigator.push({index: 2,});
-        } catch (err) {
-          // Error saving data
-        }
+        (async() => {
+          try {
+            await AsyncStorage.setItem('access_token', res.access_token);
+            await this.props.navigator.resetTo({key: 'maintabbar',});
+            // this.props.navigator.push({index: 2,});
+          } catch (err) {
+            // Error saving data
+          }
+        })();
       }
     } else {
       Alert.alert(

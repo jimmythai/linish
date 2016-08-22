@@ -4,6 +4,9 @@ import {
   View,
   ListView,
   StyleSheet,
+  TouchableHighlight,
+  Alert,
+  Vibration,
 } from 'react-native';
 
 // import { SwipeListView } from 'react-native-swipe-list-view';
@@ -14,30 +17,69 @@ import Network from './Network';
 export default class FriendsView extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(['r1', 'r2']),
+      dataSource: this.ds.cloneWithRows(['r1', 'r2']),
+      rowsData: [],
     };
 
-    this.setDataSource(ds);
+    this.setDataSource();
   }
 
-  async setDataSource(ds) {
+  async setDataSource() {
     const res = await Network._fetch({
       path: '/friends',
       method: 'GET',
     });
 
-    this.setState({
-      dataSource: ds.cloneWithRows(res),
+    await this.setState({
+      dataSource: this.ds.cloneWithRows(res),
+      rowsData: res,
+    });
+  }
+
+  _onLongPress(rowData, rowID) {
+    Vibration.vibrate([0, 10]);
+    Alert.alert(
+      rowData,
+      null,
+      [
+        {text: '友だちを削除', onPress: () => {this.deleteFriend(rowData, rowID)}}
+      ]
+    );
+  }
+
+  async deleteFriend(rowData, rowID) {
+    const res = await Network._fetch({
+      path: '/friends/delete',
+      method: 'POST',
+      body: {
+        user_ids: [rowData],
+      }
+    });
+
+    if(await res.code === 400) {
+      return;
+    }
+
+    await this.state.rowsData.splice(rowID, 1)
+
+    await this.setState({
+      dataSource: this.ds.cloneWithRows(this.state.rowsData),
+      rowsData: this.state.rowsData,
     });
   }
 
   _renderRow(rowData, sectionID, rowID, highlightRow) {
     return (
-      <View style={baseStyles.listItem}>
+      <TouchableHighlight
+        style={baseStyles.listItem}
+        onLongPress={()=> {
+          this._onLongPress(rowData, rowID)
+        }}
+      >
         <Text>{rowData}</Text>
-      </View>
+      </TouchableHighlight>
     );
   }
 
@@ -58,8 +100,8 @@ export default class FriendsView extends Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-        renderSeparator={this._renderSeparator}
+        renderRow={this._renderRow.bind(this)}
+        renderSeparator={this._renderSeparator.bind(this)}
         enableEmptySections={true}
       />
     );
@@ -79,7 +121,6 @@ const selfStyles = StyleSheet.create({
     position: 'relative',
   },
   searchBox: {
-
   },
   searchButton: {
     position: 'absolute',

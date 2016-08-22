@@ -13,9 +13,9 @@ export default class Validation {
     let errors = [];
 
     if (isEmailEmpty) {
-        errors.push("メールアドレスを入力してください");
+      errors.push("メールアドレスを入力してください");
     } else if (isNotEmailCorrect) {
-        errors.push("正しいメールアドレスを入力してください");
+      errors.push("正しいメールアドレスを入力してください");
     }
 
     if (isUserIdEmpty) {
@@ -25,9 +25,9 @@ export default class Validation {
     }
 
     if (isPasswordEmpty) {
-        errors.push('パスワードを入力してください');
+      errors.push('パスワードを入力してください');
     } else if (isPasswordShortLong) {
-        errors.push('パスワードは8文字以上100文字以内で入力してください');
+      errors.push('パスワードは8文字以上100文字以内で入力してください');
     }
 
     return errors;

@@ -9,8 +9,6 @@ import {
   InteractionManager,
 } from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
-
 import baseStyles from '../style/base';
 import Network from './Network';
 import DismissKeyboard from './DismissKeyboard';
@@ -40,7 +38,9 @@ export default class AddFriendView extends Component {
   }
 
   async _onPressSearchButton() {
-    if(!this.state.isSearchActive) return;
+    if(!this.state.isSearchActive) {
+      return;
+    }
 
     const res = await Network._fetch({
       path: '/accounts/' + this.state.userId,
@@ -74,6 +74,7 @@ export default class AddFriendView extends Component {
         followed_id: this.state.userId,
       }
     });
+
     if(await res.code === 400) {
       this.setState({
         errorText: res.error,
