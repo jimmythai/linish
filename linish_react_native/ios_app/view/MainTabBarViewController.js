@@ -16,6 +16,7 @@ export default class MainTabBarViewController extends Component {
 
     this.state = {
       selectedTab: 'friendsTab',
+      friends: "",
       // notifCount: 0,
       // presses: 0,
     }
@@ -25,6 +26,9 @@ export default class MainTabBarViewController extends Component {
   componentWillReceiveProps(props) {
     console.log(props);
     console.log('componentWillReceivePropstab + mtbvc')
+    this.setState({
+      friends: props.children[0].friends,
+    });
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -50,7 +54,11 @@ export default class MainTabBarViewController extends Component {
               selectedTab: 'friendsTab',
             });
           }}>
-          {<FriendsViewController />}
+          {
+            <FriendsViewController
+              friends={this.state.friends}
+            />
+          }
         </TabBarIOS.Item>
         <TabBarIOS.Item
           // systemIcon="history"

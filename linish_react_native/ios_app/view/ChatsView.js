@@ -32,8 +32,9 @@ export default class ChatsView extends Component {
     });
 
     let rows = res.map(function(obj) {
+      console.log(obj.user_ids)
       let users = obj.user_ids;
-      let usersString = users.join(',');
+      let usersString = users.join(',') || 'Empty Room';
 
       let updatedAt = obj.updated_at;
       let date = new Date(updatedAt);
@@ -94,12 +95,16 @@ export default class ChatsView extends Component {
         renderRow={this._renderRow.bind(this)}
         renderSeparator={this._renderSeparator}
         enableEmptySections={true}
+        style={selfStyle.list}
       />
     );
   }
 }
 
 const selfStyle = StyleSheet.create({
+  list: {
+    marginBottom: 62,
+  },
   userId: {
     alignSelf: 'center',
   },

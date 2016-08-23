@@ -15,7 +15,7 @@ import ActionCableClient
 
 class MessagesViewController: JSQMessagesViewController {
 //class MessagesViewController: JSQMessagesViewController, WebSocketDelegate {
-//    let socket = WebSocket(url: NSURL(string: "ws://192.168.100.179:3000/cable")!, protocols: ["messages"])
+//    let socket = WebSocket(url: NSURL(string: "ws://127.0.0.1:3000/cable")!, protocols: ["messages"])
     
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red:0.53, green:0.90, blue:0.29, alpha:1.00))
@@ -23,7 +23,7 @@ class MessagesViewController: JSQMessagesViewController {
     
     var selectedRoom:Int = 0
     var userId:String = ""
-    var client = ActionCableClient(URL: NSURL(string: "ws://192.168.100.103:3000/cable")!)
+    var client = ActionCableClient(URL: NSURL(string: "ws://127.0.0.1:3000/cable")!)
 //    var firstLayout = true
     
     

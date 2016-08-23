@@ -11,7 +11,7 @@ export default class Network {
   static makeUrl(protocol, path) {
     const HTTP_PROTOCOL = 'http:';
     const WEBSOCKET_PROTOCOL = 'ws:';
-    const HOST = '//192.168.100.103:3000';
+    const HOST = '//127.0.0.1:3000';
     const API_DIRECTORY = '/api';
     const API_VERSION = '/v1';
     const WEBSOCKET_DIRECTORY = '/cable';

@@ -60,23 +60,15 @@ export default class AddFriendView extends Component {
       }
     });
 
-    if(res.code === 400) {
+    if(await res.code === 400) {
       this.setState({
         errorText: res.error,
         isErrorTextVisible: true,
       });
     } else {
-      Actions.pop();
-      Actions.refresh({frined: this.state.userId});
+      await Actions.pop();
+      await Actions.refresh({friends: this.state.userId,});
     }
-  }
-
-  toggleUserId() {
-
-  }
-
-  toggleErrorText() {
-
   }
 
   _onChangeText(userId) {

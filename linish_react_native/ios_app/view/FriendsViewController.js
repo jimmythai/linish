@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
-import { NavigatorIOS } from 'react-native';
+import {
+  NavigatorIOS,
+  StatusBar
+} from 'react-native';
 import FriendsView from './FriendsView';
 
 import {Actions} from 'react-native-router-flux';
 
 export default class FriendsViewController extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      friends: '',
+    };
+  }
+
   handleNavigationRequest() {
     Actions.addFriend({hide: false});
   }
 
   componentWillReceiveProps(props) {
     console.log(props);
+    this.setState({
+      friends: props.friends,
+    });
     console.log('componentWillReceivePropstab + fvc')
   }
 
@@ -32,6 +46,7 @@ export default class FriendsViewController extends Component {
           titleTextColor: '#FFFFFF',
           tintColor: '#FFFFFF',
           translucent: false,
+          passProps: {friends: this.state.friends}
         }}
         style={{flex: 1}}
       />

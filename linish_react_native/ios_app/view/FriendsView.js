@@ -4,6 +4,7 @@ import {
   View,
   ListView,
   StyleSheet,
+  StatusBar,
 } from 'react-native';
 
 // import { SwipeListView } from 'react-native-swipe-list-view';
@@ -65,18 +66,26 @@ export default class FriendsView extends Component {
 
   render() {
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-        renderSeparator={this._renderSeparator}
-        enableEmptySections={true}
-      />
+      <View>
+        <StatusBar
+          barStyle="light-content"
+        />
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          renderSeparator={this._renderSeparator}
+          enableEmptySections={true}
+          style={selfStyles.list}
+        />
+      </View>
     );
   }
 }
 
 const selfStyles = StyleSheet.create({
-
+  list: {
+    marginBottom: 62,
+  },
   outPutContainer: {
     flex: 1,
     flexDirection: 'column',

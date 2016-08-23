@@ -93,7 +93,7 @@ class SigninViewController: UIViewController, UITextFieldDelegate {
     func connectToWebSocket() {
 //        var messageNum = 0
 //        let ws = WebSocket()
-//        ws.open("ws://192.168.100.179:3000/cable")  // or, reopen the socket to a new url
+//        ws.open("ws://127.0.0.1:3000/cable")  // or, reopen the socket to a new url
 //        let send : ()->() = {
 //            let msg = "\(messageNum+=1): \(NSDate().description)"
 //            print("send: \(msg)")
@@ -122,7 +122,7 @@ class SigninViewController: UIViewController, UITextFieldDelegate {
     }
     
 //    func connectToActionCable() {
-//        let client = ActionCableClient(URL: NSURL(string: "ws://192.168.100.179:3000/cable")!)
+//        let client = ActionCableClient(URL: NSURL(string: "ws://127.0.0.1:3000/cable")!)
 //        
 //        // Connect!
 //        client.connect()

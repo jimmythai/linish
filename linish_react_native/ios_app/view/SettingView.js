@@ -5,6 +5,7 @@ import {
   ListView,
   NavigatorIOS,
   TouchableHighlight,
+  StyleSheet,
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
@@ -73,7 +74,14 @@ export default class SettingView extends Component {
         dataSource={this.state.dataSource}
         renderRow={this._renderRow.bind(this)}
         renderSeparator={this._renderSeparator}
+        style={selfStyles.list}
       />
     );
   }
 }
+
+const selfStyles = StyleSheet.create({
+  list: {
+    marginBottom: 62,
+  },
+})

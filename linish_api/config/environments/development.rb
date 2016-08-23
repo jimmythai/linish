@@ -47,7 +47,7 @@ Rails.application.configure do
 
   # For ActionCable
   # REF: https://github.com/rails/rails/tree/master/actioncable#consumer-configuration
-  # config.action_cable.url = "ws://192.168.100.179:28080"
+  # config.action_cable.url = "ws://127.0.0.1:28080"
   # REF: https://github.com/rails/rails/tree/master/actioncable#allowed-request-origins
   # It's better to set allowed_request_origins to prevent CSRF attack(I guess)
   config.action_cable.disable_request_forgery_protection = true

@@ -62,7 +62,7 @@ class Date {
 }
 
 class API {
-    static let hostname: String = "http://192.168.100.103:3000"
+    static let hostname: String = "http://127.0.0.1:3000"
     static let subDirectory: String = "/api"
     static let apiVersion: String = "/v1"
     static var data: JSON = ""
